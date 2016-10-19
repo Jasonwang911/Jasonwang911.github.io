@@ -30,7 +30,7 @@
             top:0;
             left:0;
             border-radius:10px;
-            background:url('images/img2/1.jpg') no-repeat;
+            background:url('img2/1.jpg') no-repeat;
             transition:1s all ease;
             -webkit-box-shadow:0 0 5px #fff;
             -webkit-box-reflect:below 10px -webkit-linear-gradient(rgba(0,0,0,0) 40%,rgba(0,0,0,0.4));
@@ -45,7 +45,7 @@
 
             for(var i=0;i<N;i++){
                 var oLi=document.createElement('li');
-                oLi.style.backgroundImage='url(images/img2/'+(i+1)+'.jpg)';
+                oLi.style.backgroundImage='url(img2/'+(i+1)+'.jpg)';
                 oUl.appendChild(oLi);
 
                 (function(oLi,i){
@@ -57,26 +57,28 @@
             }
             var aLi=oUl.children;
             var y=0;
+            var x=-10;
             aLi[0].addEventListener('transitionend',function(){
                 document.onkeydown=function(ev){
                     if(ev.keyCode==37){
                         y-=360/N;
-                        keyChange();
+                        change(y,x);
                     }else if(ev.keyCode==39){
                         y+=360/N;
-                        keyChange();
+                        change(y,x);
                     }
                 };
             },false);
 
             aLi[0].addEventListener('transitionend',function(){
+                change(y,-x);
                 document.onmousedown=function(ev){
                     var disX=ev.clientX-y;
+                    var disY=ev.clientY-x;
                     document.onmousemove=function(ev){
                         y=ev.clientX-disX;
-                        for(var i=0;i<aLi.length;i++){
-                            keyChange();
-                        }
+                        x=ev.clientY-disY;
+                        change(y/3,x/3);
                     };
                     document.onmouseup=function(){
                         document.onmousemove=null;
@@ -86,13 +88,15 @@
                 };
             },false);
 
-            function keyChange(){
+            function change(y,x){
                 for(var i=0;i<aLi.length;i++){
-                    aLi[i].style.transition='1s all ease';
+                    aLi[i].style.transition='0s all ease';
                     aLi[i].style.transform='rotateY('+(360/N*i+y)+'deg) translateZ(300px)';
-                    var scale=Math.abs((Math.abs(360/N*i+y)-180)/180);
+                    oUl.style.transform='perspective(800px) rotateX('+-x+'deg)';
+                    var scale=Math.abs(Math.abs((360/N*i+y)%360)-180)/180;
                     //aLi[i].innerHTML=scale;
                     //console.log(scale);
+                    scale<0.3&&(scale=0.3);
                     aLi[i].style.opacity=scale;
                 }
             }
