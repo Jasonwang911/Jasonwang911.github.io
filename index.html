@@ -5,107 +5,30 @@
     <title>Title</title>
     <style>
         *{
-            padding:0;
-            margin:0;
-            list-style:none;
+            padding: 0;
+            margin: 0;
         }
         body{
             background:#000;
+            text-align:center;
+            overflow:hidden;
         }
-        #box{
-            width:133px;
-            height:200px;
-            position:absolute;
-            top:40%;
-            left:50%;
-            color:red;
-            margin:-100px 0 0 -67px;
-            transform-style:preserve-3d;
-            transform:perspective(800px) rotateX(-20deg);
-        }
-        #box li{
-            width:100%;
-            height:100%;
-            position:absolute;
-            top:0;
-            left:0;
-            border-radius:10px;
-            background:url('images/img2/1.jpg') no-repeat;
-            transition:1s all ease;
-            -webkit-box-shadow:0 0 5px #fff;
-            -webkit-box-reflect:below 10px -webkit-linear-gradient(rgba(0,0,0,0) 40%,rgba(0,0,0,0.4));
-            transform:rotateY(0deg) translateZ(0px);
+        #c1{
+            background:url(img/game_bg_2_hd.jpg);
+            margin:40px auto;
         }
     </style>
-    <script>
-
-        window.onload=function(){
-            var oUl=document.getElementById('box');
-            var N=11;
-
-            for(var i=0;i<N;i++){
-                var oLi=document.createElement('li');
-                oLi.style.backgroundImage='url(images/img2/'+(i+1)+'.jpg)';
-                oUl.appendChild(oLi);
-
-                (function(oLi,i){
-                    setTimeout(function(){
-                        oLi.style.transition='1s all ease '+(200*(N-i))+'ms';
-                        oLi.style.transform='rotateY('+(360/N*i)+'deg) translateZ(300px)';
-                    },0);
-                })(oLi,i);
-            }
-            var aLi=oUl.children;
-            var y=0;
-            var x=-10;
-            aLi[0].addEventListener('transitionend',function(){
-                document.onkeydown=function(ev){
-                    if(ev.keyCode==37){
-                        y-=360/N;
-                        change(y,x);
-                    }else if(ev.keyCode==39){
-                        y+=360/N;
-                        change(y,x);
-                    }
-                };
-            },false);
-
-            aLi[0].addEventListener('transitionend',function(){
-                change(y,-x);
-                document.onmousedown=function(ev){
-                    var disX=ev.clientX-y;
-                    var disY=ev.clientY-x;
-                    document.onmousemove=function(ev){
-                        y=ev.clientX-disX;
-                        x=ev.clientY-disY;
-                        change(y/3,x/3);
-                    };
-                    document.onmouseup=function(){
-                        document.onmousemove=null;
-                        document.onmouseup=null;
-                    };
-                    return false;
-                };
-            },false);
-
-            function change(y,x){
-                for(var i=0;i<aLi.length;i++){
-                    aLi[i].style.transition='0s all ease';
-                    aLi[i].style.transform='rotateY('+(360/N*i+y)+'deg) translateZ(300px)';
-                    oUl.style.transform='perspective(800px) rotateX('+-x+'deg)';
-                    var scale=Math.abs(Math.abs((360/N*i+y)%360)-180)/180;
-                    //aLi[i].innerHTML=scale;
-                    //console.log(scale);
-                    scale<0.3&&(scale=0.3);
-                    aLi[i].style.opacity=scale;
-                }
-            }
-        };
-    </script>
+    <script src="js/resource.js"></script>
+    <script src="js/com.js"></script>
+    <script src="js/fish.js"></script>
+    <script src="js/cannon.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/coin.js"></script>
+    <script src="js/diefish.js"></script>
+    <script src="js/web.js"></script>
+    <script src="js/init.js"></script>
 </head>
 <body>
-    <ul id="box">
-
-    </ul>
+    <canvas id="c1" width="800" height="600"></canvas>
 </body>
 </html>
