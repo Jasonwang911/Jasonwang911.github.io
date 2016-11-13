@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    background:#ccc;
+}
+#ul2{
+    width:530px;
+    height: 330px;
+    position: absolute;
+    top:100px;
+    left:50%;
+    margin-left: -255px;
+}
+#ul2 li{
+    width:150px;
+    height: 150px;
+    float: left;
+    margin:10px;
+    background: #ccc;
+    border: 2px solid darkgreen;
+    box-shadow:0px 0px 5px #f00;
+}
+#ul2 li a{
+    width:150px;
+    height: 150px;
+    display: block;
+}
+#ul2 li:hover{
+    background: #fede15;
+}
+#btn{
+    width:80px;
+    height: 40px;
+    display: block;
+    box-shadow:0px 0px 6px #fff;
+    position: fixed;
+    background: #f00;
+    font: 26px 'microsoft yahei';
+    left:30px;
+    top:50%;
+    margin-top:-20px;
+}
+#btn:active{
+    box-shadow:0px 2px 1px #fff;
+}

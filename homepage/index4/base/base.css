@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+li{list-style:none;}
+img{border:none; vertical-align:top;}
+a{color:#999; text-decoration:none;}
+input,textarea{background:#fff;border:none;outline:none}
+textarea{resize:none;}
+.fl{float:left;}
+.fr{float:right;}
+.clearfix:after{content:'';display:block;clear:both;}
+.w{width:1000px; margin:0 auto;}
+.col{color:aqua;}
+.col1{color:wheat}
+

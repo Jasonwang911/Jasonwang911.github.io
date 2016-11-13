@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>全景效果</title>
+
+<style>
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+
+		body{ background: #ecfaff;}
+        #ul1{width:408px; height:32px; background:#ccc;  margin: 50px auto; position: relative; }
+        #ul1 li{ width:100px; height:30px; line-height: 30px; float:left; border: 1px solid #999;  text-align: center; position: relative; z-index: 2; }
+        #ul1 li.box{  position: absolute; left:0; top:0; background:#ff0; z-index: 1; opacity:0.6; } 
+        .box{  width:205px;  height:208px; background: url("img/che.png") no-repeat; transform: rotate(0deg); position: absolute;  top: 10px; right: 50px; cursor: pointer;}
+        .rotate{ animation-name: rotate; animation-duration: 2s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
+        .rotate:hover{ animation-play-state: paused; }
+		 @keyframes rotate {
+            to{
+                transform: rotate(-360deg);
+            }
+        }
+        #box1{
+			width:500px;
+			height:200px;
+			border:1px solid #000;
+			margin:200px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#div1{
+			position: absolute;
+			top:0;
+			left:0;
+			width: 4800px;
+			height:800px;
+		}
+		#div1 img{
+			float: left;
+		}
+</style>
+<script src="js/jquery-1.7.2.js"></script>
+<script>
+
+	;(function(global){
+	    var iSpeed=0;
+	    var left=0;
+	    var timer=null;
+
+	    global.startMove=function(obj,iTarget){
+	        clearInterval(timer);
+	        timer=setInterval(function(){
+	            iSpeed+=(iTarget-left)/5;
+	            iSpeed*=0.7;
+	            left+=iSpeed;
+	            obj.style.left=left+'px';
+	            if(Math.round(iSpeed)==0 && Math.round(left)==iTarget){
+	                clearInterval(timer);
+	            }
+	        },30);
+	    }
+	})(window);
+
+	;(function(Jquery){
+		$(function(){
+			var oDiv=$('#div1');
+			var aImg=$('#div1 img');
+			oDiv.mousedown(function(ev){
+				var disX=ev.clientX-oDiv.position().left;
+		        var disY=ev.clientY-oDiv.position().top;
+				$(document).mousemove(move);
+			    $(document).mouseup(up);
+				function move(ev){
+					var l=ev.clientX-disX;
+					var t=ev.clientY-disY;
+					if(t>0){t=0}
+					if(t<-oDiv.height()+200){
+						t=-oDiv.height()+200;	
+					}
+					if(l>0){
+						l=-oDiv.width()*2/3;	
+					}
+					if(l<-oDiv.width()*2/3){
+						l=0;
+					}
+					oDiv.css({
+						left:l+'px',
+						top:t+'px'	
+			        });	
+				};
+				function up(){
+					$(document).unbind('mousemove',move);
+				    $(document).unbind('mouseup',up);
+				    $(document).reseaseCapture && $(document).reseaseCapture();	
+				}
+					$(document).setCapture && $(document).setCapture();
+		   			 return false;
+			});
+	    });
+	})($);
+	
+	(function(){
+	window.onload=function(){
+	//nav  导航效果
+	var oUl=document.getElementById('ul1');
+    var aLi=oUl.children;
+    var oBox=aLi[aLi.length-1];
+
+    var iNow=0;
+
+    for(var i=0; i<aLi.length-1; i++){
+        aLi[i].index=i;
+        aLi[i].onmouseover=function(){
+            //oBox.style.left=this.offsetLeft+'px';
+            this.style.cursor='pointer';
+            startMove(oBox,this.offsetLeft);
+        };
+        aLi[i].onmouseout=function(){
+            startMove(oBox,iNow*aLi[0].offsetWidth);
+        };
+
+        aLi[i].onclick=function(){
+            iNow=this.index;
+        };
+    }
+}
+    
+
+	})();
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+        <li>首页</li>
+        <li>联系我们</li>
+        <li>公司简介</li>
+        <li>产品展示</li>
+        <li class="box"></li>
+</ul>
+<div id="box1">
+	<div id="div1">
+		<img src="img/14.jpg"  alt="">
+		<img src="img/14.jpg"  alt="">
+       	<img src="img/14.jpg"  alt="">
+	</div>
+</div>
+<div class="box rotate"></div>
+</body>
+</html>

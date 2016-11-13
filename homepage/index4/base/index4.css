@@ -1,0 +1,74 @@
+body{
+    background:#ccc;
+}
+html{
+    overflow: hidden;
+}
+#div2{
+    width:660px;
+    margin:50px auto;
+    -display:none;
+}
+#div2 .box{
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    cursor:pointer;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform:perspective(800px) rotateY(0deg);
+    -webkit-transform:perspective(800px) rotateY(0deg);
+    -moz-transform:perspective(800px) rotateY(0deg);
+    -ms-transform:perspective(800px) rotateY(0deg);
+    transition: 1s all ease;
+    -webkit-transition: 1s all ease;
+    -moz-transition: 1s all ease;
+    -ms-transition: 1s all ease;
+}
+#div2 .box div{
+    width:100%;
+    height: 100%;
+    position:absolute;
+    left: 0;
+    top: 0;
+}
+#div2 .box .front{
+    background: #399;
+    transform: translateZ(1px);
+    -webkit-transform: translateZ(1px);
+    -moz-transform: translateZ(1px);
+    -ms-transform: translateZ(1px);
+}
+#div2 .box .back{
+    background: #96c;
+    transform: translateZ(-1px) scale(-1,1);
+    -webkit-transform: translateZ(-1px) scale(-1,1);
+    -moz-transform: translateZ(-1px) scale(-1,1);
+    -ms-transform: translateZ(-1px) scale(-1,1);
+}
+#div2 .box .back a{
+    display: block;
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    padding: 15px;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+}
+#div2 .box:hover{
+    cursor:pointer;
+    transform:perspective(1500px) rotateY(-180deg);
+    -webkit-transform:perspective(1500px) rotateY(-180deg);
+    -moz-transform:perspective(1500px) rotateY(-180deg);
+    -ms-transform:perspective(1500px) rotateY(-180deg);
+    transition:2s all linear;
+    -webkit-transition:2s all linear;
+    -moz-transition:2s all linear;
+    -ms-transition:2s all linear;
+}
+
+
+

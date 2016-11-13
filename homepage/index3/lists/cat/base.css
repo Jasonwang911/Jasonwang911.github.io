@@ -1,0 +1,116 @@
+*{padding:0;margin:0;}
+img{vertical-align:top;border:none;}
+a{text-decoration:none;}
+#Left {
+float:left;
+margin:150px 0 0 0;
+background: #FFF;
+overflow:hidden;
+border: 0px dashed #CCC;
+width: 500px;
+height:150px;
+border:5px solid #ccc;
+zoom:1;
+}
+/*Download by http://sc.xueit.com*/
+#Top {
+float:left;
+margin:50px auto;
+background: #FFF;
+overflow:hidden;
+border: 0px dashed #CCC;
+height: 500px;
+width: 150px;
+border:5px solid #ccc;
+zoom:1;
+}
+.head{
+  	width: 100%;
+  	line-height: 40px;
+  	font-size: 30px;
+  	background: #f7f7f7;
+  	text-align: center;
+  }
+
+body{background: #000;}
+#Left .left {
+float: left;
+width: 500%;
+}
+
+#Top .left {
+float: left;
+width: 100%;
+}
+
+#left1,#left3 {
+float: left;
+border:5px solid #F00;
+}
+#left2,#left4 {
+float: left;
+border:5px solid blue;
+}
+
+#left1 img,#left2 img,#left3 img,#left4 img{
+width:128px;
+height:128px;
+border:5px solid pink;
+display:block;
+float:left;
+}
+
+
+
+#Right {
+float:left;
+margin:150px 0 0 0;
+background: #FFF;
+overflow:hidden;
+border: 0px dashed #CCC;
+width: 500px;
+height:150px;
+border:5px solid #ccc;
+}
+/*Download by http://sc.xueit.com*/
+#Bottom {
+float:left;
+margin:-250px 0 0 510px;
+background: #FFF;
+overflow:hidden;
+border: 0px dashed #CCC;
+height: 500px;
+width: 150px;
+border:5px solid #ccc;
+}
+
+
+#Right .right {
+float: left;
+width: 500%;
+}
+
+#Bottom .right {
+float: left;
+width: 100%;
+}
+
+#right1,#right3 {
+float: left;
+border:5px solid #F00;
+}
+#right2,#right4 {
+float: left;
+border:5px solid blue;
+}
+
+#right1 img,#right2 img,#right3 img,#right4 img{
+width:128px;
+height:128px;
+border:5px solid pink;
+}
+
+
+
+
+

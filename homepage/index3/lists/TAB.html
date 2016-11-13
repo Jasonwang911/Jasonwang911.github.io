@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" />
+<meta name="copyright"  />
+<meta name="description" />
+<title>TAB</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+body{
+     background:#000;
+}
+#box{ width:534px; height:300px; position:relative; margin:200px 100px; overflow:hidden; float:left;}
+#box ul{ position:absolute; left:0; top:0;}
+#box ul li{ float:left; width:534px; height:300px;}
+#box ul li img{ height:300px;}
+
+#box a{ transition:.2s all ease;}
+#box .prev,#box .next{position:absolute;  top:50%; z-index:2; height:80px; line-height:80px; background:rgba(0,0,0,0.6); color:#fff; width:80px; text-align:center; margin-top:-40px; display:none;}
+#box .prev{ left:0;}
+#box .next{ right:0;}
+#box a:hover{ background:rgba(255,0,0,0.4);}
+
+#box ol{ position:absolute; width:120px; left:50%; margin-left:-60px; bottom:10px;}
+#box ol li{ width:20px; height:20px; background:#f60; float:left; margin:2px; text-align:center; text-indent:-9999px; border-radius:50%;}
+#box ol li.active{ background:#fff;}
+.head{
+    width: 100%;
+    line-height: 40px;
+    font-size: 30px;
+    background: #f7f7f7;
+    text-align: center;
+  }
+  #box1{
+            width:600px;
+            height:300px;
+            border:1px solid #000;
+            float: right;
+            position:absolute;
+            overflow:hidden;
+            background: #fff;
+            right:100px;
+            top:238px;
+        }
+        #box1 ul{
+            width:500%;
+            height:35px;
+            position:absolute;
+            top:0;
+            left:0;
+           
+        }
+        #box1 ul li{
+            width:20%;
+            height:300px;
+            float:left;
+        }
+        #box1 ul li img{
+            width:100%;
+            height:300px;   
+        }
+        #box1 ol{
+            position:absolute;
+            height:30px;
+            width:450px;
+            margin-left:-225px;
+            top:230px;
+            left:50%;   
+        }
+        #box1 ol li{
+            width:80px;
+            height:30px;
+            background:green;
+            float:left;
+            margin-left:10px;
+            position:relative;
+        }
+        #box1 ol li span{
+            width:0px;
+            height:30px;
+            position:absolute;
+            top:0;
+            left:0;
+            background:red;
+        }
+</style>
+<script src="js/jquery-1.7.2.js"></script>
+<script src="js/TAB.js"></script>
+<script src="js/move-end.js"></script>
+</head>
+<body>
+<div class="head">JQuery-选项卡</div>
+<div id="box">
+	<a href="javascript:;" class="prev">prev</a>
+    <a href="javascript:;" class="next">next</a>
+	<ul>
+    	<li><img src="img/0.jpg"></li>
+    	<li><img src="img/1.jpg"></li>
+    	<li><img src="img/2.jpg"></li>
+    	<li><img src="img/3.jpg"></li>
+    	<li><img src="img/4.jpg"></li>
+    </ul>
+    <ol>
+    	<li class="active">0</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+</div>
+<div id="box1">
+        <ul>
+            <li>
+                <img src="img_tab/1.jpg" alt="">
+            </li>
+            <li>
+                <img src="img_tab/2.jpg" alt="">
+            </li>
+            <li>
+                <img src="img_tab/3.jpg" alt="">
+            </li>
+            <li>
+                <img src="img_tab/4.jpg" alt="">
+            </li>
+            <li>
+                <img src="img_tab/5.jpg" alt="">
+            </li>
+        </ul>
+        <ol id="ol1">
+            <li>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

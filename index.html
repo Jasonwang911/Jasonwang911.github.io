@@ -3,32 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="stylesheets/swiper.min.css">
+    <link rel="stylesheet" href="stylesheets/base.css">
+    <!-- Demo styles -->
     <style>
-        *{
-            padding: 0;
+        html, body {
+            position: relative;
+            height: 100%;
+        }
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color:#000;
             margin: 0;
+            padding: 0;
         }
-        body{
-            background:#000;
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        .swiper-slide {
+            font-size: 18px;
+            color:#fff;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 40px 60px;
+        }
+        .parallax-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 130%;
+            height: 100%;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: center;
+        }
+        .swiper-slide .title {
+            font-size: 41px;
+            font-weight: 300;
+        }
+        .swiper-slide .subtitle {
+            font-size: 21px;
+        }
+        .swiper-slide .text {
+            font-size: 14px;
+            max-width: 400px;
+            line-height: 1.3;
+        }
+        .enter{
+            width: 300px;
+            height: 40px;
+            position:absolute;
+            bottom:100px;
+            left:25%;
+            top:75%;
+            margin:-20px 0 0 -150px;
+            z-index:2;
+        }
+        .enter a{
+            width:100%;
+            height:40px;
+            line-height:40px;
             text-align:center;
-            overflow:hidden;
+            color:#000;
+            font-size:30px;
+            position:absolute;
+            top:0;
+            left:0;
         }
-        #c1{
-            background:url(img/game_bg_2_hd.jpg);
-            margin:40px auto;
+        .enter a.mask{
+            background:linear-gradient(-45deg,rgba(255,255,255,0) 40%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 60%);
+            background:-webkit-linear-gradient(-45deg,rgba(255,255,255,0) 40%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 60%);
+            background:-moz-linear-gradient(-45deg,rgba(255,255,255,0) 40%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 60%);
+            background:-ms-linear-gradient(-45deg,rgba(255,255,255,0) 40%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 60%);
+            color:rgba(0,0,0,0);
+            background-clip:text;
+            -webkit-background-clip:text;
+            -moz-background-clip:text;
+            -ms-background-clip:text;
+            animation:4s linear move infinite;
+            -webkit-animation:4s linear move infinite;
+            -moz-animation:4s linear move infinite;
+            -ms-animation:4s linear move infinite;
+        }
+        @keyframes move{
+            from{background-position:-200px 0}
+            to{background-position:600px 0}
+        }
+        @-webkit-keyframes move{
+            from{background-position:-200px 0}
+            to{background-position:600px 0}
+        }
+        @-moz-keyframes move{
+            from{background-position:-200px 0}
+            to{background-position:600px 0}
+        }
+        @-o-keyframes move{
+            from{background-position:-200px 0}
+            to{background-position:600px 0}
         }
     </style>
-    <script src="js/resource.js"></script>
-    <script src="js/com.js"></script>
-    <script src="js/fish.js"></script>
-    <script src="js/cannon.js"></script>
-    <script src="js/bullet.js"></script>
-    <script src="js/coin.js"></script>
-    <script src="js/diefish.js"></script>
-    <script src="js/web.js"></script>
-    <script src="js/init.js"></script>
+    <!-- Swiper JS -->
+    <script src="javascripts/swiper.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                parallax: true,
+                speed: 600,
+            });
+            var oA=new Audio();
+            oA.src='media/GALA - 追梦赤子心.mp3';
+            oA.play();
+        },false);
+    </script>
 </head>
 <body>
-    <canvas id="c1" width="800" height="600"></canvas>
+<!-- Swiper -->
+<div class="swiper-container">
+    <div class="parallax-bg" style="background-image:url(images/index.jpg)" data-swiper-parallax="-23%"></div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="title" data-swiper-parallax="-100">我是王深</div>
+            <div class="subtitle" data-swiper-parallax="-200">一个热爱互联网的80后</div>
+            <div class="text" data-swiper-parallax="-300">
+                <p>从事互联网行业并不仅仅因为我需要工作，因为这个神秘而强大的计算机世界对我充满了诱惑和吸引，我喜欢所有电子产品，喜欢自己做出新鲜而好玩的东西的时候那种feel，虽然我是个小白，但我相信，做自己喜欢的事情才会让自己成长的更加强大和长远</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="title" data-swiper-parallax="-100">我是王深</div>
+            <div class="subtitle" data-swiper-parallax="-200">一个喜欢足球的追风男孩</div>
+            <div class="text" data-swiper-parallax="-300">
+                <p>一个圆圆的黑白相间的小精灵，不知不觉已经陪伴了我十载之久，我喜欢烈日下追逐的感觉，在哪个时候，你的眼里，你的心里有的只有这个精灵给你带来的快乐。足球是世界第一大运动，因为足球不是一个人的游戏，团队才是足球的核心，远远想来，是足球让是一个凝聚成一个核心，成功时有人和你一起笑，失败时有人陪你哭，而汗水是是一个一起流，同甘苦共患难的团队才是真正打不败的。以球会友，环顾我的周围，曾经的玩伴，曾经的队友</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="title" data-swiper-parallax="-100">我是王深</div>
+            <div class="subtitle" data-swiper-parallax="-200">热爱音乐，热爱生活</div>
+            <div class="text" data-swiper-parallax="-300">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <!-- Add Pagination -->
+    <!--<div class="swiper-pagination swiper-pagination-white"></div>-->
+    <!-- Add Navigation -->
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
+</div>
+<!--进入文字（高亮背景）-->
+<div class="enter">
+    <a href="homepage/index.html">点击进入王深的博客</a>
+    <a href="homepage/index.html" class="mask">点击进入王深的博客</a>
+</div>
 </body>
 </html>
