@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="text">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../stylesheets/base.css">
+    <style>
+        .main{
+            width: 600px;
+            height: 250px;
+            background:#ccc;
+            margin:0px auto;
+            margin-top:30px;
+            padding:10px;
+        }
+        .main_title{
+            width: 200px;
+            height: 20px;
+            font:20px/20px '微软雅黑';
+            margin:5px auto;
+            color:aqua;
+        }
+        input,textarea{
+            background:#fff;
+        }
+        #sub{
+            width: 40px;
+            height: 20px;
+            background:skyblue;
+            cursor:pointer;
+        }
+        .none_mes{
+            width: 620px;
+            height: 40px;
+            background:rgba(146,234,250,0.8);
+            text-align:center;
+            font:20px/40px '微软雅黑';
+            margin:0 auto;
+        }
+        .message{
+            width: 600px;
+            height: 100px;
+            background:rgba(146,234,250,0.8);
+            margin:0 auto;
+            padding:10px;
+        }
+        .message .name,.message .job,.message .mes{
+            height: 20px;
+            width: 620px;
+        }
+        .message .del{
+            width: 40px;
+            height: 20px;
+            background:orangered;
+            text-align:center;
+            line-height:20px;
+            cursor:pointer;
+        }
+    </style>
+    <script src="javascripts/angular.min.js"></script>
+    <script>
+        var app=angular.module('text',[]);
+        app.factory('todoStorage', function () {
+            // todos JSON字符串存储的唯一标识
+            var STORAGE_ID = 'todos-angularjs';
+
+            return {
+                // 从localStorage中取出todos，并解析成JSON对象
+                get: function () {
+                    return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+                }
+
+                /*// 将todos对象转化成JSON字符串，并存入localStorage
+                put: function (todos) {
+                    localStorage.setItem(STORAGE_ID, JSON.stringify(todos));
+                }*/
+            };
+        });
+        app.controller('add_msg',function($scope){
+
+            //先清空留言填写处的信息
+            $scope.data=[];
+            $scope.username='';
+            $scope.job='';
+            $scope.mes='';
+            //点击确定添加内容  这里只是添加了一个add的方法，在点击确定按钮的时候添加调用事件ng-click模型
+            $scope.add=function(){
+                //进行判断，当留言内容齐全的时候允许添加，不全的时候提示用户
+                if($scope.username && $scope.job && $scope.mes){
+
+                    $scope.data.push({
+                        username:$scope.username,
+                        job:$scope.job,
+                        mes:$scope.mes
+                    });
+                    //将信息存入到localstorage中
+                    localStorage.username=$scope.username;
+                    localStorage.job=$scope.job;
+                    localStorage.mes=$scope.mes;
+                    //获取到内容后再次清空留言填写处的信息
+                    $scope.username='';
+                    $scope.job='';
+                    $scope.mes='';
+                }else{
+                    alert('请填写全部内容');
+                }
+            };
+            //点击删除的时候，因为data为数组，删除当前数组这一项就可以，$index为索引，
+            $scope.delete=function(index){
+                $scope.data.splice(index,1);
+                localStorage.clear();
+            };
+            //增加键盘回车提交功能，当全部输入后可以在最后一个输入位置按回车提交
+            $scope.keyup=function(){
+                if(ev.keyCode==13){
+                    //当回车的时候条用add函数
+                    this.add();
+                }
+            };
+        });
+    </script>
+</head>
+<body style="color:#000" ng-controller="add_msg">
+<div class="header">
+    <div class="head_top"></div>
+    <div class="head_bt">
+        <div class="head_bt_main w clearfix">
+            <h1><a href="../../index.html">王深个人站</a></h1>
+            <div class="head_nav clearfix" id="header">
+                <a href="../index.html" class="m1"><b>首页</b><span></span></a>
+                <a href="" class="m2"><b>关于王深</b><span></span></a>
+                <a href="http://www.cnblogs.com/jasonwang2y60/" class="m3"><b>个人博客</b><span></span></a>
+                <a href="../index3/index3.html" class="m4"><b>js效果</b><span></span></a>
+                <a href="../index4/index4.html" class="m5"><b>H5效果</b><span></span></a>
+                <a href="../index5/index5.html" class="m6"><b>学习关注</b><span></span></a>
+                <a href="index6.html" class="m7"><b>留言板</b><span></span></a>
+                <a href="" class="m8"><b>更多板块</b><span></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main" >
+    <div class="main_title">angular留言板</div>
+    <div>
+        <span class="name">姓名</span><input type="text" name="" ng-model="username">
+        <span class="name">所属公司</span><input type="text" name="" ng-model="job">
+        <div class="name">留言内容</div>
+        <textarea name="" cols="30" rows="10" ng-model="mes" ng.keyup="keyup($event)"></textarea><br />
+        <input type="button" value="确定" id="sub" ng-click="add()">
+    </div>
+</div>
+<div class="none_mes" ng-show="data.length==0">暂无留言</div>
+<!--item in data angular里的循环样式  在需要内容的地方加相应的值。-->
+<div class="message"  ng-repeat="item in data">
+    <ul>
+        <li class="name">姓名：{{item.username}}</li>
+        <li class="job">公司：{{item.job}}</li>
+        <li class="mes">留言内容：{{item.mes}}</li>
+        <li class="del" ng-click="delete($index)">删除</li>
+    </ul>
+</div>
+</body>
+<script src="../../javascripts/sound.js"></script>
+</html>

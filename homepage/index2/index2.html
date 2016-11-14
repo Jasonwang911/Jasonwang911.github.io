@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于王深</title>
+    <link rel="stylesheet" href="../../stylesheets/base.css">
+    <style>
+        body{
+            background:aqua;
+        }
+        .icon{
+            width:140px;
+            height: 200px;
+            background:url(images/zidane.jpg) no-repeat;
+            border:5px solid #000;
+            margin:100px auto;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var oIcon=document.getElementById('icon');
+            oIcon.onmouseover=function(){
+                oIcon.style.backgroundImage='url(images/zidane1.jpg)';
+            };
+            oIcon.onmouseout=function(){
+                oIcon.style.backgroundImage='url(images/zidane.jpg)';
+            };
+        };
+    </script>
+</head>
+<body>
+    <div>
+         <div class="icon" id="icon"></div>
+    </div>
+</body>
+</html>
