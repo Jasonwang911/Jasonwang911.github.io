@@ -5,32 +5,176 @@
     <title>关于王深</title>
     <link rel="stylesheet" href="../../stylesheets/base.css">
     <style>
+        body,html{
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+        }
         body{
             background:aqua;
+        }
+        .contain{
+            width: 600px;
+            margin:120px auto;
+            text-align:center;
         }
         .icon{
             width:140px;
             height: 200px;
             background:url(images/zidane.jpg) no-repeat;
             border:5px solid #000;
-            margin:100px auto;
+            border-radius:50%;
+            margin:0 auto;
+            box-shadow:0px 20px 30px #000;
+            -webkit-box-shadow:0px 20px 30px #000;
+            -moz-box-shadow:0px 20px 30px #000;
+            -ms-box-shadow:0px 20px 30px #000;
+            -o-box-shadow:0px 20px 30px #000;
+            position:relative;
+            z-index:3;
+        }
+        .contain h2{
+            font:bold 32px/75px '微软雅黑';
+            text-shadow:0px 5px 5px #000;
+            -webkit-text-shadow:0px 5px 5px #000;
+            -moz-text-shadow:0px 5px 5px #000;
+            -ms-text-shadow:0px 5px 5px #000;
+            -o-text-shadow:0px 5px 5px #000;
+            color:#fff;
+        }
+        .contain p{
+            font:bold 16px/35px '微软雅黑';
+            color:rgba(0,0,0,0.6);
+        }
+        .contain h5{
+            font:bold 22px/38px '微软雅黑';
+            color:#fff;
+        }
+        .contain span{
+            display:block;
+            width: 125px;
+            height: 40px;
+            margin:0 auto;
+            border-radius:3px;
+            background:#35b5c5;
+            -webkit-box-shadow:0px 5px 30px #35b5c5;
+            -moz-box-shadow:0px 5px 30px #35b5c5;
+            -ms-box-shadow:0px 5px 30px #35b5c5;
+            -o-box-shadow:0px 5px 30px #35b5c5;
+            box-shadow:0px 5px 30px #35b5c5;
+            font:bold 22px/38px '微软雅黑';
+            color:#fff;
+            position:relative;
+            z-index:5;
+        }
+        .about_me{
+            width: 560px;
+            height: 460px;
+            padding:10px 20px;
+            background:#e1e1e1;
+            -webkit-box-shadow:0px 10px 40px #000;
+            -moz-box-shadow:0px 10px 40px #000;
+            -ms-box-shadow:0px 10px 40px #000;
+            -o-box-shadow:0px 10px 40px #000;
+            box-shadow:0px 10px 40px #000;
+            position:absolute;
+            transform: scale(5);
+            opacity: 0;
+            top: 50%;
+            left: 50%;
+            margin:-235px -300px;
+            cursor:pointer;
+        }
+        .about_me h2{
+            font:bold 20px/50px '微软雅黑';
+            color:#6b6b6b;
+        }
+        .about_me ul,.about_me ol{
+            margin-left:5px;
+        }
+        .about_me li{
+            font:bold 12px/25px 'Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif';
+            color:#31a3b1;
+        }
+        .about_me .close{
+            position:absolute;
+            right: -12px;
+            top: -12px;
+            width: 30px;
+            height: 30px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background:#00ccff;
+            font:25px/30px '微软雅黑';
+            text-align:center;
+            cursor:pointer;
+            color:#fff;
+        }
+        .on{
+            transition:.4s all cubic-bezier(0.52,2.14,0.6,0.54);
+            transform:scale(1);
+            opacity:1;
+        }
+        .hide{
+            transition:.4s all ease;
+            transform:scale(5);
+            opacity:0;
         }
     </style>
+    <script src="../../javascripts/jquery-1.7.2.js"></script>
     <script>
-        window.onload=function(){
-            var oIcon=document.getElementById('icon');
-            oIcon.onmouseover=function(){
-                oIcon.style.backgroundImage='url(images/zidane1.jpg)';
-            };
-            oIcon.onmouseout=function(){
-                oIcon.style.backgroundImage='url(images/zidane.jpg)';
-            };
-        };
+        $(function(){
+            $('.icon').mouseover(function(){
+                $('.icon').css('background-image','url(images/zidane1.jpg)');
+            });
+            $('.icon').on('mouseout',function(){
+                $('.icon').css('background-image','url(images/zidane.jpg)');
+            });
+            $('#btn').on('click',function(){
+                $('.contain span').css('z-index','0');
+                $('.icon').css('z-index','0');
+                $('.about_me').removeClass('hide');
+                $('.about_me').addClass('on');
+            });
+            $('.close').on('click',function(){
+                $('.contain span').css('z-index','3');
+                $('.icon').css('z-index','5');
+                $('.about_me').addClass('hide');
+                $('.about_me').removeClass('on');
+            });
+        });
     </script>
 </head>
 <body>
-    <div>
-         <div class="icon" id="icon"></div>
+    <div class="contain">
+        <div class="icon"></div>
+        <h2>我是王深</h2>
+        <p>可以让步，却不可以退缩，可以羞涩，却不可以软弱</p>
+        <h5>WEB前端工程师</h5>
+        <span id="btn">详细介绍</span>
+    </div>
+    <div class="about_me">
+        <h2>基本资料</h2>
+        <ul>
+            <li>姓名：王深</li>
+            <li>出生年月：1988年7月</li>
+            <li>毕业院校：河北农业大学</li>
+            <li>学历：大专</li>
+            <li>TEL：13383627670</li>
+            <li>Email：wangshen911@126.com</li>
+        </ul>
+        <h2>我会的</h2>
+        <ol>
+            <li>熟练掌握DIV+CSS、JavaScript原生代码、jQuery等Web前端开发技术。</li>
+            <li>熟练掌握HTML5、CSS3等移动端开发技术。</li>
+            <li>熟练运用Ajax异步交互，Jsonp跨域取数据。</li>
+            <li>熟练运用Dreamweaver、Photoshop、Sublime、	WebStorm等常用网页设计制作软件。</li>
+            <li>熟悉MVC开发模式，RequireJS模块化开发，AngularJS、Zepto、SwipeJS等移动端框架的使用。</li>
+            <li>熟悉git、grunt、npm。</li>
+            <li>了解Node.js、PHP后台语言。</li>
+        </ol>
+        <a class="close">×</a>
     </div>
 </body>
 </html>
