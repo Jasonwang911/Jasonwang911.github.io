@@ -1,6 +1,6 @@
 module.exports = {
   // base用来配置部署github后的文件夹
-  base:'/docs/',
+  // base:'/docs/',
   // 文章的标题
   title: 'Today',
   description: '王深技术积累',
