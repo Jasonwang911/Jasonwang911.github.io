@@ -1,6 +1,9 @@
 sudo: required
   language: node_js
   node_js: stable
+  cache:
+    directories:
+      - node_modules
   script: bash ./deploy.sh
   branches:
     only:
