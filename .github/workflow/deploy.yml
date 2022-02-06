@@ -11,7 +11,8 @@ jobs:
       uses: Jasonwang911/Jasonwang911.github.io@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_BRANCH: vuepress-pages
+        TARGET_REPO: Jasonwang911/Jasonwang911.github.io
+        TARGET_BRANCH: gh-pages
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: docs/.vuepress/dist
         
