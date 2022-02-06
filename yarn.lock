@@ -1439,6 +1439,11 @@
   resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-back-to-top/-/vuepress-plugin-back-to-top-1.6.0.tgz#16cf1a6844f156c11d5135c646270c6734263eb6"
   integrity sha512-BCEv+d6UwNnI7njQx54XcsKdBvHKkp+JmyKnrxcRltyR8OAIW4qf1PQC0Ypp1GHMAL4fFgbUc9/eeAkvMPgYkg==
 
+"@vuepress-reco/vuepress-plugin-bulletin-popover@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-bulletin-popover/-/vuepress-plugin-bulletin-popover-1.6.0.tgz#f11a229db172ad931996f325fefd0bc6335e474a"
+  integrity sha512-vMCzvDDXMlzQDADqCwitQetjD0NiQ2skOJ+xXSZWJj/n1Mj4q+eMLDXgFOZ1z6xiNWrDO7CBXGcJIp8kRfAS5g==
+
 "@vuepress-reco/vuepress-plugin-comments@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-comments/-/vuepress-plugin-comments-1.6.0.tgz#df9fb43ce032d429b4c6defcaef461420593f69f"
@@ -1451,6 +1456,11 @@
     "@vssue/api-gitlab-v4" "^1.1.1"
     valine "^1.4.14"
     vssue "^1.4.6"
+
+"@vuepress-reco/vuepress-plugin-kan-ban-niang@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@vuepress-reco/vuepress-plugin-kan-ban-niang/-/vuepress-plugin-kan-ban-niang-1.0.5.tgz#73b47094f1a07af05923fe9ae6c25a4c33586168"
+  integrity sha512-ufqpOw0zhLxv3PvoYlHTsjmG4CFiCaQ8dnf950Ov7JmajKgpAMarZ3ObB+xi5ex0sgetxU82YSf+CptQceXQIw==
 
 "@vuepress-reco/vuepress-plugin-loading-page@^1.6.0":
   version "1.6.0"
@@ -8875,6 +8885,11 @@ vuepress-plugin-smooth-scroll@^0.0.9:
   integrity sha512-UXX+HLZO1NKVwyiOJlj0smh8F9dKnwybjEi7w/Mj9EYLhKrNYr5uXs+N+OTt8VwKCn3f0vZ1XAwFIjsPlD7GJA==
   dependencies:
     smoothscroll-polyfill "^0.4.4"
+
+vuepress-plugin-sponsor@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-sponsor/-/vuepress-plugin-sponsor-1.0.0.tgz#376e21efc98d6ae271db4aaaa04cf5206b2c74f0"
+  integrity sha512-tXKhu1RN/zusQy1qela/SpKIKyRfzAsGNE1NZVcW99P3V4QzWigMvfNWlXipy3D4O/g8OrJza+hsSN95/4fAyA==
 
 vuepress-theme-reco@^1.6.10:
   version "1.6.10"

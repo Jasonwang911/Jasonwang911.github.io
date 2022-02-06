@@ -1,0 +1,3 @@
+---
+showSponsor: true
+---

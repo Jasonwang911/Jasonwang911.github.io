@@ -17,6 +17,9 @@
   "dependencies": {
     "@vssue/api-github-v3": "^1.4.7",
     "@vssue/vuepress-plugin-vssue": "^1.4.8",
+    "@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.6.0",
+    "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
+    "vuepress-plugin-sponsor": "^1.0.0",
     "vuepress-theme-reco": "^1.6.10"
   }
 }

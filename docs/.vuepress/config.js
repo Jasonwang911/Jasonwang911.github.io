@@ -25,7 +25,7 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
     type: 'blog',
-    author: 'Jason Wang',
+    author: '王深',
     blogConfig: {
       category: {
         location: 2,     // 在导航栏菜单中所占的位置，默认2
@@ -68,6 +68,8 @@ module.exports = {
     ],
     // 导航栏的配置，自动生成
     sidebar: 'auto',
+    // 404 腾讯公益
+    noFoundPageByTencent: true,
     // 显示最后更新时间
     lastUpdated: '最后更新时间',
   },
@@ -91,6 +93,53 @@ module.exports = {
         clientSecret: '9e086e75cd13a600a7ffe639f21b38bed39d8b14', // github上面申请的clientSecret
       },
     ],
+    // 看板娘插件
+    [
+      '@vuepress-reco/vuepress-plugin-kan-ban-niang',{
+        theme: [
+          'miku', 'whiteCat', 'haru1', 'haru2', 'haruto', 'koharu', 'izumi', 'shizuku', 'wanko', 'blackCat', 'z16'
+        ],
+        clean: false,
+        messages: { 
+          welcome: '欢迎来到我的博客', home: '心里的花，我想要带你回家。', theme: '好吧，希望你能喜欢我的其他小伙伴。', close: '你不喜欢我了吗？痴痴地望着你。' 
+        },
+        messageStyle: { 
+          right: '68px', bottom: '290px' 
+        },
+        width: 250,
+        height: 320
+      }
+    ],
+    // 公告插件
+    ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
+      width: '300px', // 默认 260px
+      title: '消息提示',
+      body: [
+        {
+          type: 'title',
+          content: '小站正在建设中 🎉🎉🎉',
+          style: 'text-aligin: center;'
+        }
+      ],
+      footer: [
+        {
+          type: 'button',
+          text: '打赏',
+          link: '/foreign/reward'
+        }
+      ]
+    }],
+    // 打赏页面插件
+    [
+      'vuepress-plugin-sponsor',
+      {
+        theme: 'simple',
+        alipay: '/images/rvcode/qrcode-alipay.jpg',
+        wechat: '/images/rvcode/qrcode-wechat.jpg',
+        qq: '/images/rvcode/qrcode-qq.jpg',
+        duration: 2000
+      }
+    ]
   ],
   // 备案信息
    // 备案
