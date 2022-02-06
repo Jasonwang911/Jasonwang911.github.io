@@ -34,8 +34,7 @@ module.exports = {
           {text: '从0搭建vue', link: '/webpack/vue'},
         ],
       },
-      {text: 'mapbox', link: '/mapbox/index'},
-      {text: 'travis', link: '/travis/'},
+      {text: 'Github Actions', link: '/github-actions/'},
     ],
     // 导航栏的配置，自动生成
     sidebar: 'auto',
