@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: vuepress-deploy
-      uses: Jasonwang911/Jasonwang911.github.io@main
+      uses: jenkey2011/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: Jasonwang911/Jasonwang911.github.io
