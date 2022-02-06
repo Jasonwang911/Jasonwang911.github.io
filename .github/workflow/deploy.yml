@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy Github Pages
 on: [push]
 jobs:
   build-and-deploy:
@@ -8,10 +8,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
+      uses: Jasonwang911/Jasonwang911.github.io@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_BRANCH: vuepress-pages
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: docs/.vuepress/dist
-        TARGET_BRANCH: vuepress-pages
+        
