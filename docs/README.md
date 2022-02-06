@@ -1,8 +1,8 @@
 ---
 home: true
-heroImage: /hero.jpg
+bgImage: /hero.jpg
 heroText: null
-heroImageStyle: {
-  maxHeight: '200px'
+bgImageStyle: {
+  height: '650px'
 }
 ---
