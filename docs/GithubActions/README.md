@@ -1,4 +1,14 @@
-## Github Actions 部署 vuepress 到 Github Pages
-GitHub Ac­tions 的配置文件叫做 work­flow 文件，存放在代码仓库的.github/workflows 目录中。
-
-### 使用第三方actions
+---
+title: 烤鸭的做法
+date: '2019-08-08 08:00:00'
+sidebar: 'auto'
+categories:
+ - 烹饪
+ - 爱好
+tags:
+ - 烤
+ - 鸭子
+keys:
+ - '123456'
+publish: false
+---
