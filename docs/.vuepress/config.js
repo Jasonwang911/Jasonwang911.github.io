@@ -64,7 +64,17 @@ module.exports = {
           {text: '从0搭建vue', link: '/webpack/vue'},
         ],
       },
-      {text: 'Github Actions', link: '/github-actions/'},
+      {
+        "text": "联系我",
+        "icon": "reco-message",
+        "items": [
+          {
+            "text": "GitHub",
+            "link": "https://github.com/Jasonwang911",
+            "icon": "reco-github"
+          }
+        ]
+      }
     ],
     // 导航栏的配置，自动生成
     sidebar: 'auto',
@@ -80,6 +90,19 @@ module.exports = {
   },
   // 配置插件
   plugins: [
+    // 背景飘落动画
+    ["sakura", {
+      num: 30,  // 默认数量
+      show: true,
+      zIndex: 2,
+      img: {
+        replace: false,  // false 默认图 true 换图 需要填写httpUrl地址
+        httpUrl: '/images/sakura.png'     // 绝对路径
+      }
+    }],
+    // 返回顶部
+    ['go-top'],
+    // GitHub 评论
     [
       '@vssue/vuepress-plugin-vssue',
       {
@@ -141,14 +164,7 @@ module.exports = {
       }
     ],
     // 光标插件
-    [
-      'cursor-effects',
-      {
-         size: 2, // size of the particle, default: 2
-         shape: ['star' | 'circle'], // shape of the particle, default: 'star'
-         zIndex: 99999, // z-index property of the canvas, default: 999999999
-      },
-   ]
+    ['cursor-effects']
   ],
   // 备案信息
    // 备案
