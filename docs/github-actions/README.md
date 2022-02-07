@@ -11,3 +11,14 @@ Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功�
 - master 分支，自动化测试
 - dev 分支，自动部署到测试机
 - v*.*.* 格式的tag，自动上线，支持回滚
+
+#### 名词
+1. 触发条件 on
+- push
+- branches
+- paths
+
+2. 任务 job
+
+
+3. 步骤 steps 可以自定义，亦可以使用第三方
