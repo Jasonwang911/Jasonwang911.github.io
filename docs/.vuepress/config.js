@@ -65,6 +65,22 @@ module.exports = {
         ],
       },
       {
+        "text": "小工具",
+        "icon": "reco-api",
+        "items": [
+          {
+            "text": "图片压缩",
+            "link": "https://tinypng.com/",
+            "icon": "reco-accessible-icon"
+          },
+          {
+            "text": "图片裁剪",
+            "link": "https://www.gaitubao.com/",
+            "icon": "reco-accessible-icon"
+          }
+        ]
+      },
+      {
         "text": "联系我",
         "icon": "reco-message",
         "items": [
