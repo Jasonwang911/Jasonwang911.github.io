@@ -1,13 +1,17 @@
 ---
-title: 烤鸭的做法
+title: 掉发历程
 date: '2019-08-08 08:00:00'
 sidebar: 'auto'
 categories:
- - 烹饪
- - 爱好
+ - 个人积累
+ - 全栈知识
 tags:
- - 烤
- - 鸭子
+ - js
+ - node
+ - vue
+ - 前端工程
+ - 数据库
+ - linux
 keys:
  - '123456'
 publish: false

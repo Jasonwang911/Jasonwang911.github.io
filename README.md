@@ -1,6 +1,6 @@
 ## 💌 我的博客
 
-> 项目地址：[https://jasonwang911.github.io/]
+[项目地址](https://jasonwang911.github.io/)
 
 ### deploy.sh 修改后的
 ```

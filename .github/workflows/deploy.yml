@@ -2,6 +2,9 @@ name: Build and Deploy Github Pages
 on: 
   push: 
     branches: [ master ]
+    paths: 
+      - '.github/workflows/**'
+      - 'docs/**'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
