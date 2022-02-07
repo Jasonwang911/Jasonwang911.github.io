@@ -9,22 +9,26 @@ tags:
 sticky: 1
 ---
 
-# Github Actions  
+<!-- more -->
+::: tip 背景介绍  
 Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功能抢答，易学易用
-> 自动化构建和测试
+
+> 自动化构建和测试    
 > 接口测试，依赖于测试机搭建
+:::
+
 
 ## 1. 使用
 > [官方文档](https://docs.github.com/en/actions)    
 > 在项目根目录创建 .github/workflows 文件夹，并创建对应的 yml文件   
 
 
-### 2. 应用场景 
+## 2. 应用场景 
 - master 分支，自动化测试    
 - dev 分支，自动部署到测试机    
 - v*.*.* 格式的tag，自动上线，支持回滚    
 
-### 3. 名词
+## 3. 名词
 1. 触发条件 on
 - push
 - branches
@@ -85,7 +89,7 @@ jobs:    # 可以定义多个
           npm run test:remote
 ```
 
-### 4. 自动化测试
+## 4. 自动化测试
 - pre-commit 时执行本地接口测试   `npm run test:local`  
 - master push 时执行远程接口测试   `npm run test:remote`
 
