@@ -8877,6 +8877,11 @@ vuepress-plugin-disqus@^0.2.0:
   dependencies:
     vue-disqus "^3.0.5"
 
+vuepress-plugin-dynamic-title@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-dynamic-title/-/vuepress-plugin-dynamic-title-1.0.0.tgz#867e7a8b821ad35ccfaaafc2358bc129817d422f"
+  integrity sha512-CN1wtkPNG3shGzEFgqOa2dzojSle7SeAaf+Cw77Xmkv8jvB3wO5r2zXkIHTjiclQY1c5q5lE8h2A9vQaLdor2Q==
+
 vuepress-plugin-feed@^0.1.8:
   version "0.1.9"
   resolved "https://registry.yarnpkg.com/vuepress-plugin-feed/-/vuepress-plugin-feed-0.1.9.tgz#706fc381c1831c110d161b7e892057750c8904da"

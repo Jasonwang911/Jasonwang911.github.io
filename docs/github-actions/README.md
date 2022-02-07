@@ -11,7 +11,7 @@ sticky: 1
 
 <!-- more -->
 ::: tip 背景介绍  
-Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功能抢答，易学易用
+Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功能强大，易学易用
 
 > 自动化构建和测试    
 > 接口测试，依赖于测试机搭建
@@ -92,5 +92,9 @@ jobs:    # 可以定义多个
 ## 4. 自动化测试
 - pre-commit 时执行本地接口测试   `npm run test:local`  
 - master push 时执行远程接口测试   `npm run test:remote`
+
+
+
+<Vssue title="Github Actions" />
 
 

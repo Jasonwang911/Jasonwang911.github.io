@@ -149,6 +149,18 @@ module.exports = {
         height: 320
       }
     ],
+    // 动态标题
+    [
+      //动态标题 先安装在配置， npm install vuepress-plugin-dynamic-title --save
+      "vuepress-plugin-dynamic-title",
+      {
+        showIcon: "/images/shen.png",
+        showText: "(/≧▽≦/)咦！又好了！",
+        hideIcon: "/images/shen.png",
+        hideText: "(●—●)喔哟，崩溃啦！",
+        recoverTime: 2000
+      }
+    ],
     // 公告插件
     ['@vuepress-reco/vuepress-plugin-bulletin-popover', {
       width: '300px', // 默认 260px
