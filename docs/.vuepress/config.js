@@ -36,8 +36,8 @@ module.exports = {
         text: 'Tag'      // 默认文案 “标签”
       },
       socialLinks: [     // 信息栏展示社交信息
-        { icon: 'reco-github', link: 'https://github.com/recoluan' },
-        { icon: 'reco-npm', link: 'https://www.npmjs.com/~reco_luan' }
+        { icon: 'reco-github', link: 'https://github.com/Jasonwang911' },
+        { icon: 'reco-npm', link: 'https://www.npmjs.com/~jasonwang880125' }
       ],
       nav: [
         { text: 'TimeLine', link: '/timeline/', icon: 'reco-date' }
@@ -65,29 +65,29 @@ module.exports = {
         ],
       },
       {
-        "text": "小工具",
-        "icon": "reco-api",
-        "items": [
+        text: "小工具",
+        icon: "reco-api",
+        items: [
           {
-            "text": "图片压缩",
-            "link": "https://tinypng.com/",
-            "icon": "reco-accessible-icon"
+            text: "图片压缩",
+            link: "https://tinypng.com/",
+            icon: "reco-accessible-icon"
           },
           {
-            "text": "图片裁剪",
-            "link": "https://www.gaitubao.com/",
-            "icon": "reco-accessible-icon"
+            text: "图片裁剪",
+            link: "https://www.gaitubao.com/",
+            icon: "reco-accessible-icon"
           }
         ]
       },
       {
-        "text": "联系我",
-        "icon": "reco-message",
-        "items": [
+        text: "联系我",
+        icon: "reco-message",
+        items: [
           {
-            "text": "GitHub",
-            "link": "https://github.com/Jasonwang911",
-            "icon": "reco-github"
+            text: "GitHub",
+            link: "https://github.com/Jasonwang911",
+            icon: "reco-github"
           }
         ]
       }
