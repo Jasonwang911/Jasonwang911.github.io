@@ -6,7 +6,7 @@ heroTextStyle: {
   color: '#fff'
 }
 bgImageStyle: {
-  height: '650px'
+  height: 'calc(100vh - 3.6rem)'
 }
 isShowTitleInHome: false
 footer: MIT Licensed | Copyright © 2022-present Jason Wang
