@@ -1,4 +1,4 @@
-name: Build and Deploy Vuepress Blog To Linux 
+name: Build and Deploy Vuepress Blog to Linux 
 on: 
   push: 
     branches: [ master ]
@@ -13,15 +13,15 @@ jobs:
     - name: Checkout   # 获取最新代码
       uses: actions/checkout@master 
 
-    - name: use Node.js 12
+    - name: use Node.js 12  # 安装node环境
       uses: actions/setup-node@v2
       with:
           node-version: 12
 
-    - name: npm install and build
+    - name: npm install and build  # 打包和编译
       run: npm install && npm run build
 
-    - name: ssh deploy
+    - name: ssh deploy  # 发布到云服务器
       uses: easingthemes/ssh-deploy@v2.1.6
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
