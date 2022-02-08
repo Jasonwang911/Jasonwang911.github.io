@@ -13,33 +13,25 @@ jobs:
     - name: Checkout   # 获取最新代码
       uses: actions/checkout@master 
 
-    - name: set ssh key # 临时设置 ssh key  将本机私钥给测试机  WFP_ID_RSA 是本机的私钥  id_rsa  目的是为了在 ubuntu-latest 上登录云服务器
+    - name: use Node.js 10
+      uses: actions/setup-node@v1
+      with:
+          node-version: 12
+
+    - name: npm install and build
       run: |
-        mkdir -p ~/.ssh/
-        echo "${{secrets.WFP_ID_RSA}}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan "47.95.223.216" >> ~/.ssh/known_hosts
+        npm install 
+        npm run build
 
-    - name: deploy # 部署
-      run: |
-        ssh work@47.95.223.216  "
-        cd /home/work/vuepress/Jasonwang911.github.io;
-        git remote add origin https://github.com/Jasonwang911/Jasonwang911.github.io.git;
-        git checkout master;
-        git pull orgin master;   # 拉取最新代码
-        git remote remove origin;  # 删除origin,
-
-        yarn;
-        # 打包
-        yarn run build;
-        # 清空nginx静态目录
-        rm -rf /usr/share/nginx/html/blog/*;
-        # 讲dist目录中文件拷贝到 nginx静态文件下
-        cp -r ./dics/.vuepress/dist/* /usr/share/nginx/html/blog/;
-        "
-
-    - name: delete ssh key # 删除 ssh key
-      run: rm -rf ~/.ssh/id_rsa
+    - name: Deploy 
+      uses: easingthemes/ssh-deploy@main  
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: '-avz --delete'
+          SOURCE: 'docs/.vuepress/dist'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: '/usr/share/nginx/html/blog'
 
 
     
