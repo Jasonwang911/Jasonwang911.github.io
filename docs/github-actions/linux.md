@@ -81,6 +81,7 @@ docker-compose --version
 - 重启容器
 
 ### 2. 配置deplay-linux.yml 
+- 讲本地的id_rsa内容添加到github仓库的中的secrets
 
 ```
 # 以下是额外配置
