@@ -29,7 +29,7 @@ jobs:
         # 记得删除 origin 否则会暴露 github 密码
 
         cd /home/work/vuepress/Jasonwang911.github.io;
-        git remote add origin git@github.com:Jasonwang911/Jasonwang911.github.io.git;
+        git remote add origin https://github.com/Jasonwang911/Jasonwang911.github.io.git;
         git checkout master;
         git pull orgin master;   # 拉取最新代码
         git remote remove origin;  # 删除origin,
