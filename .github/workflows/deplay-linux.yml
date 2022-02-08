@@ -22,19 +22,13 @@ jobs:
 
     - name: deploy # 部署
       run: |
-        ssh work@47.95.223.216"
-
-        # 【注意】 用work账号登录，手动创建 /home/work/vuepress 目录
-        # 然后 git clone git@github.com:Jasonwang911/Jasonwang911.github.io.git -b master  私有仓库必须使用用户名和密码
-        # 记得删除 origin 否则会暴露 github 密码
-
+        ssh work@47.95.223.216  "
         cd /home/work/vuepress/Jasonwang911.github.io;
         git remote add origin https://github.com/Jasonwang911/Jasonwang911.github.io.git;
         git checkout master;
         git pull orgin master;   # 拉取最新代码
         git remote remove origin;  # 删除origin,
 
-        # 安装依赖
         yarn;
         # 打包
         yarn run build;
