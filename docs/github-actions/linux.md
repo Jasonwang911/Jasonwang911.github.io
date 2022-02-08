@@ -39,7 +39,8 @@ chmod u-w /etc/sudoers   # 还原权限
 使用work登录机器，输入su，再输入root账号的密码，即可拥有超级权限
 
 ### 2. 登录信任 
-- 原理是 ssh 登录 centos
+原理是 ssh 登录 centos   
+- **方法1** 
 为了避免每次登录输入密码，需要进行登录信任，创建 `~/.ssh/authorized_keys` 文件
 ```
 # 修改文件夹权限
@@ -47,7 +48,14 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 将本机的 `id_rsa.pub` 内容粘贴进来       
-退出重新用work登录，将不用再输入密码 
+
+- **方法2**   
+在本地执行 `ssh-copy-id` 命令将公钥文件传输的远程机器，并生效  
+```
+ssh-copy-id -i ~/.ssh/id_rsa.pub work@xx.xx.xx.xx
+```
+
+以上两种方法人选其一退出重新用work登录，将不用再输入密码 
 
 ### 3. 安装必备软件
 - Git
