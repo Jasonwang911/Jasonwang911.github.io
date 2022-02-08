@@ -88,8 +88,6 @@ docker-compose --version
 Load key "/home/runner/.ssh/id_rsa": invalid format
 ```
 
-```
-
 
 
 
