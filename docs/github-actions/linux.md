@@ -36,7 +36,7 @@ vim /etc/sudoers  # 编辑该文件
 
 chmod u-w /etc/sudoers   # 还原权限
 ``` 
-使用work登录机器，输入su，再输入root账号的密码，即可拥有超级权限
+使用work登录机器，输入su，再输入root账号的密码，即可拥有超级权限。
 
 ### 2. 登录信任 
 原理是 ssh 登录 centos   
