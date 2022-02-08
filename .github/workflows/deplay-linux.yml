@@ -13,7 +13,7 @@ jobs:
     - name: Checkout   # 获取最新代码
       uses: actions/checkout@master 
 
-    - name: use Node.js 10
+    - name: use Node.js 12
       uses: actions/setup-node@v1
       with:
           node-version: 12
@@ -23,15 +23,15 @@ jobs:
         npm install 
         npm run build
 
-    - name: Deploy 
-      uses: easingthemes/ssh-deploy@main  
+    - name: ssh deploy
+      uses: easingthemes/ssh-deploy@v2.1.6
       env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: '-avz --delete'
-          SOURCE: 'docs/.vuepress/dist'
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: '/usr/share/nginx/html/blog'
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        ARGS: '-avz --delete'
+        SOURCE: 'docs/.vuepress/dist'
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: '/usr/share/nginx/html/blog'
 
 
     
