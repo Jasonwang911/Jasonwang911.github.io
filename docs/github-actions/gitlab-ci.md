@@ -346,6 +346,65 @@ sudo gitlab-runner unregister --all-runners
 ```
 **然后重置token,并使用更新后的token重新注册一个Runner**
 
+## 六、Gitlab-ci和docker自动化构建发布
+
+### 1. 服务器上配置免密操作 
+
+### 2. 用docker安装gitlab-runner  
+
+### 3. .gitlab-ci.yml文件
+
+```
+/做缓存的
+cache:
+  key: ${CI_PROJECT_NAME}
+  paths:
+    - node_modules/
+//测试
+# test_e2e:
+#   image: cypress/browsers:chrome67
+#   stage: test
+#   script:
+#     - npm i
+#     - npm run test:e2e -- --headless --record --key b2a22185-8eeb-4f0e-9b21-2d61f769d8c7
+#   only:
+#     - master
+//dev环境构建
+dev:build:
+  image: node
+  stage: build
+  script:
+    - yarn
+    - yarn build:dev
+  only:
+    - dev
+  tags:
+    - eye-runner
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist //项目打包后的文件夹
+//dev环境发布
+dev:deploy:
+  image: alpine:3.7
+  stage: deploy
+  script:
+    - echo "http://mirrors.aliyun.com/alpine/v3.7/main/" > /etc/apk/repositories
+    - apk add --no-cache rsync openssh
+    - mkdir -p ~/.ssh
+    - echo "$SSH_KEY_DEMO_PRIVATE" >> ~/.ssh/id_rsa
+    - echo "$SSH_KEY_DEMO_PUB" >> ~/.ssh/id_rsa.pub
+    - chmod 600 ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa.pub
+    - echo -e "Host *\n\t StrictHostKeyChecking no \n\n" > ~/.ssh/config
+    - rsync -rav --delete ./dist/ "$SERVER_DEMO_HOST:$SERVER_DEMO_PATH"//同步打包后的文件夹里的内容到nginx指定的静态资源文件夹
+  only:
+    - dev
+  tags:
+    - eye-runner
+```
+
+
 
 
 
