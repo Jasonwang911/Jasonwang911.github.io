@@ -40,7 +40,8 @@ chmod u-w /etc/sudoers   # 还原权限
 使用work登录机器，输入su，再输入root账号的密码，即可拥有超级权限。
 
 ### 2. 登录信任 
-原理是 ssh 登录 centos   
+ssh免登陆的原理是这样的，A将自己的公钥发送给B，A要登陆B，B给A发送一个随机数，然后A用自己的私钥对这个随机数加密，B用保存的A的公钥解密，如果得到的随机数和之前发送的一样，则验证通过。   
+
 - **方法1** 
 为了避免每次登录输入密码，需要进行登录信任，创建 `~/.ssh/authorized_keys` 文件
 ```
@@ -53,6 +54,8 @@ chmod 600 ~/.ssh/authorized_keys
 - **方法2**   
 在本地执行 `ssh-copy-id` 命令将公钥文件传输的远程机器，并生效  
 ```
+# 本机如果没有.ssh文件，需要先生成  
+# ssh-keygen -t rsa -C "xx@qq.com"(随便编个字符串，一般用邮箱）
 ssh-copy-id -i ~/.ssh/id_rsa.pub work@xx.xx.xx.xx
 ```
 
