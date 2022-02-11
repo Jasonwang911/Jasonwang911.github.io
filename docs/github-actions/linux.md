@@ -13,6 +13,8 @@ sticky: 2
 使用GitHub Actions 将自己静态网站（vuepress）部署到云服务器，原理如下      
 <img src="~@img/images/cicd/cicd.png" width = "600" height = "500" alt="github actions" align=center />
 :::
+
+<Boxx type="warning" changeTime="3000"  /> 
 ## 一、准备工作
 
 ###  1. 创建work账号

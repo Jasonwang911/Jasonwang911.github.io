@@ -192,7 +192,24 @@ module.exports = {
       }
     ],
     // 光标插件
-    ['cursor-effects']
+    ['cursor-effects'],
+    // 标题名人名言
+    ["vuepress-plugin-boxx"],
+    // pwa插件  本选项开启了一个用于刷新内容的弹窗。
+    ['@vuepress/pwa', {
+      serviceWorker: true,
+      updatePopup: {
+          message: "王深博客发现新内容啦~",
+          buttonText: "刷新"
+      }
+    }],
+    // 复制弹窗插件
+    ["vuepress-plugin-nuggets-style-copy", {
+      copyText: "复制代码",
+      tip: {
+          content: "复制成功!"
+      }
+    }]
   ],
   // 备案信息
    // 备案

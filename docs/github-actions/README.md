@@ -18,6 +18,9 @@ Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功�
 :::
 
 
+<Boxx type="warning" changeTime="3000"  /> 
+
+
 ## 1. 使用
 > [官方文档](https://docs.github.com/en/actions)    
 > 在项目根目录创建 .github/workflows 文件夹，并创建对应的 yml文件   

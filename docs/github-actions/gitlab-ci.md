@@ -11,8 +11,10 @@ sticky: 3
 
 ::: tip 使用 Gitlab CI 部署应用到云服务器    
 使用Gitlab CI 将自己静态网站（vuepress）部署到云服务器    
-<img src="~@img/images/cicd/gitlab-ci.jpg" width = "800" height = "500" alt="海油LMS-app" align=center />    
+<img src="~@img/images/cicd/gitlab-ci.jpg" width = "800" height = "500" alt="海油LMS-app" align=center />     
 :::
+
+<Boxx type="warning" changeTime="3000"  /> 
 
 ## 一、 Gitlab安装部署和常用命令
 - [文章](https://blog.csdn.net/unhejing/article/details/104767623)

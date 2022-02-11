@@ -19,9 +19,12 @@
     "@vssue/vuepress-plugin-vssue": "^1.4.8",
     "@vuepress-reco/vuepress-plugin-bulletin-popover": "^1.6.0",
     "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
+    "@vuepress/plugin-pwa": "^1.9.7",
+    "vuepress-plugin-boxx": "^0.0.7",
     "vuepress-plugin-cursor-effects": "^1.1.2",
     "vuepress-plugin-dynamic-title": "^1.0.0",
     "vuepress-plugin-go-top": "^1.0.4",
+    "vuepress-plugin-nuggets-style-copy": "^1.0.3",
     "vuepress-plugin-sakura": "^1.1.0",
     "vuepress-plugin-sponsor": "^1.0.0",
     "vuepress-theme-reco": "^1.6.10"

@@ -4,10 +4,11 @@ date: 2022-02-11
 categories:
  - 全栈知识
 tags:
-- docker
-- linux
+ - docker
+ - linux
 ---
 
+<Boxx type="warning" changeTime="3000"  /> 
 
 
 ## Docker compose
@@ -28,7 +29,9 @@ yum -y install python-pip
 pip --version    
 pip install --upgrade pip   
 ```
-如果报错执行以下操作     
+
+如果报错执行以下操作  
+
 ```
 # Command "python setup.py egg_info" failed with error code 1 in /tmp/pip-build-A5acXn/importlib-metadata/   
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
@@ -55,7 +58,7 @@ docker-compose version
 
 
 ### 常用命令
-1. 构建容器 docker-compose build <service-name>
+1. 构建容器 docker-compose build service-name
 2. 启动所有服务器 docker-compose up -d  后台启动 -d
 3. 停止所有服务 docker-compose down
 4. 查看服务（当前docker-compose配置文件下的所有服务） docker-compose ps

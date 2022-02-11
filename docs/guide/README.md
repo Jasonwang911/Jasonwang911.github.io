@@ -11,8 +11,8 @@ tags:
  - vue
  - 前端工程
  - 数据库
- - linux
  - docker
+ - linux
 keys:
  - '123456'
 publish: false
