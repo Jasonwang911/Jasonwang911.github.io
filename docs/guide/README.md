@@ -1,6 +1,6 @@
 ---
 title: 掉发历程
-date: '2019-08-08 08:00:00'
+date: '2022-02-07 08:00:00'
 sidebar: 'auto'
 categories:
  - 个人积累
@@ -12,6 +12,7 @@ tags:
  - 前端工程
  - 数据库
  - linux
+ - docker
 keys:
  - '123456'
 publish: false

@@ -1,6 +1,6 @@
 ---
 home: true
-bgImage: /hero.jpg
+bgImage: /hero1.jpg
 heroText: null
 heroTextStyle: {
   color: '#fff'
