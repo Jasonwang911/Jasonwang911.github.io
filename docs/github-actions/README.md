@@ -18,7 +18,7 @@ Github actions 是2019年秋天github发布的CI/CD工具，高效稳定，功�
 :::
 
 
-<Boxx type="warning" changeTime="3000"  /> 
+<Boxx type="warning" changeTime="30000"  /> 
 
 
 ## 1. 使用

@@ -14,7 +14,7 @@ sticky: 2
 <img src="~@img/images/cicd/cicd.png" width = "600" height = "500" alt="github actions" align=center />
 :::
 
-<Boxx type="warning" changeTime="3000"  /> 
+<Boxx type="warning" changeTime="30000"  /> 
 ## 一、准备工作
 
 ###  1. 创建work账号

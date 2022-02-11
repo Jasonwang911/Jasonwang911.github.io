@@ -8,7 +8,7 @@ tags:
  - linux
 ---
 
-<Boxx type="warning" changeTime="3000"  /> 
+<Boxx type="warning" changeTime="30000"  /> 
 
 
 # Docker compose
