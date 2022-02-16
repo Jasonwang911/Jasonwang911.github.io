@@ -124,7 +124,7 @@ stages: # 分段
 ``` 
 
 则在Gitlab交互界面中能够看到如下展示  
-<img src="~@img/images/cicd/gitlab-ci.jpg" width = "800" height = "300" alt="gitlab" align=center /> 
+<img src="~@img/images/cicd/gitlab-jobs.jpg" width = "800" height = "300" alt="gitlab" align=center /> 
 
 ### 2. Job 
 Job是pipeline的任务节点，它构成了pipeline的基本单元  
