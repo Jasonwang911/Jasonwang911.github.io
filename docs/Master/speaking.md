@@ -2,7 +2,7 @@
 title: 口语逻辑框架
 date: 2022-02-26
 categories:
- - 口语
+ - 英语
 tags:
 - 英语
 ---
@@ -20,3 +20,9 @@ tags:
 - Let me think about it.   
 - That's a though/difficult question.   
 - I don't know much about this question, um...
+
+
+
+
+
+<Vssue title="口语逻辑框架" />

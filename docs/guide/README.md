@@ -5,6 +5,7 @@ sidebar: 'auto'
 categories:
  - 个人积累
  - 全栈知识
+ - 英语
 tags:
  - js
  - node
@@ -13,6 +14,7 @@ tags:
  - 数据库
  - docker
  - linux
+ - 英语
 keys:
  - '123456'
 publish: false
