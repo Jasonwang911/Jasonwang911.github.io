@@ -6,6 +6,7 @@ categories:
  - 个人积累
  - 全栈知识
  - 英语
+ - 管理学
 tags:
  - js
  - node
@@ -15,6 +16,7 @@ tags:
  - docker
  - linux
  - 英语
+ - 管理学
 keys:
  - '123456'
 publish: false
