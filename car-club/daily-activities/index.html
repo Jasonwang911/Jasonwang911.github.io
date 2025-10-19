@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车友会10月红包奖励计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            padding: 20px 15px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus {
+            border-color: #1a2a6c;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #1a2a6c, #2a3a9c);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2a3a9c, #3a4aac);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        
+        .result h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .result-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .total-result {
+            background: linear-gradient(135deg, #fdbb2d, #b21f1f);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .total-result h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .total-amount {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .rules {
+            font-size: 12px;
+            color: #777;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>深蓝S05天津车友会</h1>
+            <p>计算您的汽车之家活动奖励金额</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">1</span>
+                贡献值奖金计算
+            </div>
+            <div class="input-group">
+                <label for="contribution">当月累计贡献值</label>
+                <input type="number" id="contribution" placeholder="请输入累计贡献值">
+            </div>
+            <button class="btn" onclick="calculateContributionBonus()">计算贡献值奖金</button>
+            <div class="result" id="contributionResult">
+                <h3>贡献值奖金</h3>
+                <div class="result-value" id="contributionAmount">0元</div>
+                <div class="rules">
+                    规则：≥550得100元，≥400得60元，≥200得40元
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">2</span>
+                参与奖金计算
+            </div>
+            <div class="input-group">
+                <label for="postCount">当月累计发帖数量</label>
+                <input type="number" id="postCount" placeholder="请输入发帖数量">
+            </div>
+            <div class="input-group">
+                <label for="browseDays">浏览任务完成天数</label>
+                <input type="number" id="browseDays" placeholder="请输入浏览任务天数" min="0" max="31">
+            </div>
+            <div class="input-group">
+                <label for="commentDays">评论任务完成天数</label>
+                <input type="number" id="commentDays" placeholder="请输入评论任务天数" min="0" max="31">
+            </div>
+            <button class="btn" onclick="calculateParticipationBonus()">计算参与奖金</button>
+            <div class="result" id="participationResult">
+                <h3>参与奖金</h3>
+                <div class="result-value" id="participationAmount">0元</div>
+                <div class="rules">
+                    规则：≥7天得5元，7-20天每日0.75元，20-31天每日0.84元
+                </div>
+            </div>
+        </div>
+        
+        <div class="total-result" id="totalResult">
+            <h2>预计总奖励</h2>
+            <div class="total-amount" id="totalAmount">0元</div>
+            <p>贡献值奖金 + 参与奖金</p>
+        </div>
+    </div>
+
+    <script>
+        // 计算贡献值奖金
+        function calculateContributionBonus() {
+            const contribution = parseInt(document.getElementById('contribution').value) || 0;
+            let bonus = 0;
+            
+            if (contribution >= 550) {
+                bonus = 100;
+            } else if (contribution >= 400) {
+                bonus = 60;
+            } else if (contribution >= 200) {
+                bonus = 60;
+            } else {
+                bonus = 0;
+            }
+            
+            document.getElementById('contributionAmount').textContent = bonus + '元';
+            document.getElementById('contributionResult').style.display = 'block';
+            
+            calculateTotalBonus();
+        }
+        
+        // 计算参与奖金
+        function calculateParticipationBonus() {
+            const postCount = parseInt(document.getElementById('postCount').value) || 0;
+            const browseDays = parseInt(document.getElementById('browseDays').value) || 0;
+            const commentDays = parseInt(document.getElementById('commentDays').value) || 0;
+            
+            // 计算参与天数（取最大值，因为同一天完成多个任务只算一天）
+            const participationDays = Math.max(postCount > 0 ? 1 : 0, browseDays, commentDays);
+            let bonus = 0;
+            
+            if (participationDays >= 7 && participationDays <= 20) {
+                bonus = 5 + (participationDays - 7) * 0.75;
+            } else if (participationDays > 20) {
+                bonus = 5 + (20 - 7) * 0.75 + (participationDays - 20) * 0.84;
+            }
+            
+            // 最高限额
+            if (participationDays >= 7) {
+                bonus = Math.min(bonus, 25);
+            } else {
+                bonus = 0;
+            }
+            
+            document.getElementById('participationAmount').textContent = bonus.toFixed(2) + '元';
+            document.getElementById('participationResult').style.display = 'block';
+            
+            calculateTotalBonus();
+        }
+        
+        // 计算总奖金
+        function calculateTotalBonus() {
+            const contributionBonus = parseFloat(document.getElementById('contributionAmount').textContent) || 0;
+            const participationBonus = parseFloat(document.getElementById('participationAmount').textContent) || 0;
+            
+            const totalBonus = contributionBonus + participationBonus;
+            
+            if (totalBonus > 0) {
+                document.getElementById('totalAmount').textContent = totalBonus.toFixed(2) + '元';
+                document.getElementById('totalResult').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
