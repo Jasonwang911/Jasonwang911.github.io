@@ -10,6 +10,30 @@ module.exports = {
     // ['link', { rel: 'manifest', href: '/images/shen.png' }],
     ['link', { rel: 'apple-touch-icon', href: '/images/shen.png' }],
   ],
+  // 添加以下配置来处理静态 HTML 文件
+  chainWebpack: (config) => {
+    // 添加对 .html 文件的处理规则
+    config.module
+      .rule('html')
+      .test(/\.html$/)
+      .use('file-loader')
+      .loader('file-loader')
+      .options({
+        name: '[path][name].[ext]'
+      })
+      .end()
+  },
+  // 确保静态文件被正确复制
+  patterns: [
+    '**/*.html',
+    '**/*.css',
+    '**/*.js',
+    '**/*.png',
+    '**/*.jpg',
+    '**/*.jpeg',
+    '**/*.gif',
+    '**/*.svg'
+  ],
   serviceWorker: true, // 是否开启 PWA
   configureWebpack: {
     resolve: {
@@ -209,7 +233,19 @@ module.exports = {
       tip: {
           content: "复制成功!"
       }
-    }]
+    }],
+    // 添加重定向插件
+    [
+      'vuepress-plugin-redirect',
+      {
+        redirectors: [
+          {
+            base: '/car-club/daily-activities',
+            alternative: '/car-club/daily-activities/index.html'
+          }
+        ]
+      }
+    ]
   ],
   // 备案信息
    // 备案
