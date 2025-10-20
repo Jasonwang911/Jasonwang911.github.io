@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 Gitlab CI 部署应用到云服务器 | Today</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/images/shen.png">
+    <link rel="apple-touch-icon" href="/images/shen.png">
+    <meta name="description" content="Today, have you studied yet?">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    
+    <link rel="preload" href="/assets/css/0.styles.64af8f02.css" as="style"><link rel="preload" href="/assets/js/app.eb6a6e16.js" as="script"><link rel="preload" href="/assets/js/7.27fe50b1.js" as="script"><link rel="preload" href="/assets/js/2.2f1a7624.js" as="script"><link rel="preload" href="/assets/js/1.44dacab0.js" as="script"><link rel="preload" href="/assets/js/39.053e6331.js" as="script"><link rel="preload" href="/assets/js/34.45141a63.js" as="script"><link rel="prefetch" href="/assets/js/10.e248d934.js"><link rel="prefetch" href="/assets/js/11.ab045220.js"><link rel="prefetch" href="/assets/js/14.255000c1.js"><link rel="prefetch" href="/assets/js/15.3f0536c8.js"><link rel="prefetch" href="/assets/js/16.9ac107dc.js"><link rel="prefetch" href="/assets/js/17.3911f4a1.js"><link rel="prefetch" href="/assets/js/18.71e13565.js"><link rel="prefetch" href="/assets/js/19.2c01a94b.js"><link rel="prefetch" href="/assets/js/20.8fd252d3.js"><link rel="prefetch" href="/assets/js/21.ae1fca5b.js"><link rel="prefetch" href="/assets/js/22.63adc950.js"><link rel="prefetch" href="/assets/js/23.52489c34.js"><link rel="prefetch" href="/assets/js/24.9435e947.js"><link rel="prefetch" href="/assets/js/25.72340fcb.js"><link rel="prefetch" href="/assets/js/26.05b5ab2d.js"><link rel="prefetch" href="/assets/js/27.7bc9930d.js"><link rel="prefetch" href="/assets/js/28.f1538615.js"><link rel="prefetch" href="/assets/js/29.f9782315.js"><link rel="prefetch" href="/assets/js/3.c5b9a8e2.js"><link rel="prefetch" href="/assets/js/30.a00b99d7.js"><link rel="prefetch" href="/assets/js/31.d15c43cf.js"><link rel="prefetch" href="/assets/js/32.9ffb7359.js"><link rel="prefetch" href="/assets/js/33.5259b649.js"><link rel="prefetch" href="/assets/js/35.67cdf101.js"><link rel="prefetch" href="/assets/js/36.d9b023ab.js"><link rel="prefetch" href="/assets/js/37.4da09d98.js"><link rel="prefetch" href="/assets/js/38.c3aead40.js"><link rel="prefetch" href="/assets/js/4.0ae48901.js"><link rel="prefetch" href="/assets/js/40.368c3830.js"><link rel="prefetch" href="/assets/js/41.452167d6.js"><link rel="prefetch" href="/assets/js/42.9aae4bc1.js"><link rel="prefetch" href="/assets/js/43.c7e836dd.js"><link rel="prefetch" href="/assets/js/44.c08513a2.js"><link rel="prefetch" href="/assets/js/45.7e31bcd4.js"><link rel="prefetch" href="/assets/js/46.16430a01.js"><link rel="prefetch" href="/assets/js/47.bb6de25c.js"><link rel="prefetch" href="/assets/js/48.132da89e.js"><link rel="prefetch" href="/assets/js/49.1a062503.js"><link rel="prefetch" href="/assets/js/5.76af0c22.js"><link rel="prefetch" href="/assets/js/50.8ace3e2d.js"><link rel="prefetch" href="/assets/js/51.b60e0836.js"><link rel="prefetch" href="/assets/js/52.463522cb.js"><link rel="prefetch" href="/assets/js/6.81ed8ea8.js"><link rel="prefetch" href="/assets/js/8.b5fca59b.js"><link rel="prefetch" href="/assets/js/9.a0bea130.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.b3d39fac.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.64af8f02.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Today</h3> <p class="description" data-v-59e6cb88>Today, have you studied yet?</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>王深</span>
+          
+        <!---->
+        2025
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/images/shen.png" alt="Today" class="logo"> <span class="site-name">Today</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/管理学/" class="nav-link"><i class="undefined"></i>
+  管理学
+</a></li><li class="dropdown-item"><!----> <a href="/categories/英语/" class="nav-link"><i class="undefined"></i>
+  英语
+</a></li><li class="dropdown-item"><!----> <a href="/categories/全栈知识/" class="nav-link"><i class="undefined"></i>
+  全栈知识
+</a></li><li class="dropdown-item"><!----> <a href="/categories/个人积累/" class="nav-link"><i class="undefined"></i>
+  个人积累
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      webpack
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/index.html" class="nav-link"><i class="undefined"></i>
+  webpack简介
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/vue.html" class="nav-link"><i class="undefined"></i>
+  从0搭建vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-other"></i>
+      汽车俱乐部
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/car-club/daily-activities/index.html" class="nav-link"><i class="iconfont reco-date"></i>
+  日常活动
+</a></li><li class="dropdown-item"><!----> <a href="/car-club/daily-activities/picture.html" class="nav-link"><i class="iconfont reco-date"></i>
+  生成图片
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-api"></i>
+      小工具
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-accessible-icon"></i>
+  图片压缩
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.gaitubao.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-accessible-icon"></i>
+  图片裁剪
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/Jasonwang911" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><!----> <h3 class="name" data-v-1fad0c41>
+    王深
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>9</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>9</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41><li class="social-item" data-v-1fad0c41><i class="iconfont reco-github" style="color:#e15b64;" data-v-1fad0c41></i></li><li class="social-item" data-v-1fad0c41><i class="iconfont reco-npm" style="color:#e15b64;" data-v-1fad0c41></i></li></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/管理学/" class="nav-link"><i class="undefined"></i>
+  管理学
+</a></li><li class="dropdown-item"><!----> <a href="/categories/英语/" class="nav-link"><i class="undefined"></i>
+  英语
+</a></li><li class="dropdown-item"><!----> <a href="/categories/全栈知识/" class="nav-link"><i class="undefined"></i>
+  全栈知识
+</a></li><li class="dropdown-item"><!----> <a href="/categories/个人积累/" class="nav-link"><i class="undefined"></i>
+  个人积累
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      webpack
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/webpack/index.html" class="nav-link"><i class="undefined"></i>
+  webpack简介
+</a></li><li class="dropdown-item"><!----> <a href="/webpack/vue.html" class="nav-link"><i class="undefined"></i>
+  从0搭建vue
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-other"></i>
+      汽车俱乐部
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/car-club/daily-activities/index.html" class="nav-link"><i class="iconfont reco-date"></i>
+  日常活动
+</a></li><li class="dropdown-item"><!----> <a href="/car-club/daily-activities/picture.html" class="nav-link"><i class="iconfont reco-date"></i>
+  生成图片
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-api"></i>
+      小工具
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://tinypng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-accessible-icon"></i>
+  图片压缩
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://www.gaitubao.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-accessible-icon"></i>
+  图片裁剪
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-message"></i>
+      联系我
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/Jasonwang911" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont reco-github"></i>
+  GitHub
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>使用 Gitlab CI 部署应用到云服务器</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>王深</span>
+          
+        <!---->
+        2025
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">使用 Gitlab CI 部署应用到云服务器</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>王深</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2/9/2022</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>前端工程</span><span class="tag-item" data-v-8a445198>linux</span></i></div></div> <div class="theme-reco-content content__default"><div class="custom-block tip"><p class="title">使用 Gitlab CI 部署应用到云服务器</p><p>使用Gitlab CI 将自己静态网站（vuepress）部署到云服务器<br> <img src="/assets/img/gitlab-ci.9bc781c5.jpg" width="800" height="500" alt="海油LMS-app" align="center"></p></div><div id="boxx" data-v-f4ca0dac><div data-v-f4ca0dac><p v-if="true" class="custom-block-title" data-v-f4ca0dac></p> <p v-if="true" data-v-f4ca0dac></p></div></div> <h2 id="一、-gitlab安装部署和常用命令"><a href="#一、-gitlab安装部署和常用命令" class="header-anchor">#</a> 一、 Gitlab安装部署和常用命令</h2> <ul><li><a href="https://blog.csdn.net/unhejing/article/details/104767623" target="_blank" rel="noopener noreferrer">文章<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <h2 id="二、-gitlab-runner-安装和配置"><a href="#二、-gitlab-runner-安装和配置" class="header-anchor">#</a> 二、 Gitlab runner 安装和配置</h2> <h3 id="_1-安装-gitlab-runner"><a href="#_1-安装-gitlab-runner" class="header-anchor">#</a> 1. 安装 gitlab runner</h3> <p>依照官网进行安装</p> <div class="language- line-numbers-mode"><pre class="language-text"><code># 我当前centos 7 为  Linux x86-64
+sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
+
+# 设置安装目录可执行
+sudo chmod +x /usr/local/bin/gitlab-runner
+
+# 直接使用 root 用户权限运行 gitlab-runner （或者其他用户，看需求）
+sudo gitlab-runner install --user=root --working-directory=/home/gitlab-runner
+#启动
+sudo gitlab-runner start
+
+# 如果提示命令  command not found  需要配置环境
+# 添加软链接
+ln -s -f /usr/local/bin/gitlab-runner /usr/bin/gitlab-runner
+
+# 查看版本
+gitlab-runner -v
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h3 id="_2-注册-gitlab-runner"><a href="#_2-注册-gitlab-runner" class="header-anchor">#</a> 2. 注册 gitlab-runner</h3> <p>通过管理员登录 gitlab ---- 管理中心---- 概况 ---- Runner 查看需要注册的 URL与 Token（令牌）</p> <p>配置注册信息 <code>gitlab-runner register</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>[root@localhost ~]#  gitlab-runner register
+Running in system-mode.                            
+# 引导会让你输入gitlab的url，输入自己的url，例如http://gitlab.example.com/                           
+Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
+http://xxx.xxx.xxx:xxx/
+# 引导会让你输入token，去相应的项目下找到token，例如xrjc3tWcdQpLcEwoYzkU
+Please enter the gitlab-ci token for this runner:
+xrjc3tWcdQpLcEwoYzkU
+# 输入描述
+Please enter the gitlab-ci description for this runner:
+[localhost.localdomain]: develop
+# 引导会让你输入tag，一个项目可能有多个runner，是根据tag来区别runner的，输入若干个就好了，比如web,hook,deploy,develop
+Please enter the gitlab-ci tags for this runner (comma separated):
+develop
+# 是否运行未标记的版本
+Whether to run untagged builds [true/false]:
+[false]: false
+# 是否将运行程序锁定到当前项目
+Whether to lock Runner to current project [true/false]:
+[false]: true
+Registering runner... succeeded                     runner=xrjc3tWc
+#  引导会让你输入executor，这个是要用什么方式来执行脚本，图方便输入shell就好了
+Please enter the executor: shell, ssh, docker+machine, docker, docker-ssh, parallels, virtualbox, docker-ssh+machine, kubernetes:
+shell
+Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded! 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br></div></div><p>注册好后，在gitlab中相应的位置就可以看到你注册好的runner信息。</p> <h3 id="_3-自定义构建目录"><a href="#_3-自定义构建目录" class="header-anchor">#</a> 3. 自定义构建目录</h3> <p><a href="https://docs.gitlab.com/runner/configuration/advanced-configuration.html#the-global-section" target="_blank" rel="noopener noreferrer">gitlab-runner 配置说明<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a><br>
+对应的配置文件在 <code>/etc/gitlab-runner/config.toml</code><br>
+修改配置文件，允许自定义git clone 的目录<br>
+此功能要求GIT_CLONE_PATH在其中定义的路径内runners.builds_dir。为了便于使用的builds_dir所述 $CI_BUILDS_DIR变量可被使用。</p> <h3 id="_4-对应执行命令"><a href="#_4-对应执行命令" class="header-anchor">#</a> 4. 对应执行命令</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code># 运行
+gitlab-runner run
+# 启动
+gitlab-runner start
+# 重启
+gitlab-runner restart
+# 通过name 取消注册
+gitlab-runner unregister --name develop
+# 删除所有注册runner
+gitlab-runner unregister --all-runners
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="三、-gitlab-ci-yml"><a href="#三、-gitlab-ci-yml" class="header-anchor">#</a> 三、 gitlab-ci.yml</h2> <p>gitlab-ci.yml配置的特定关键字</p> <p>在了解了YML文件的语法格式后，接下来需要了解的就是gitlab-ci独特的配置关键字，这些关键字将在.gitlab-ci.yml中使用，并用来控制一个pipeline具体的运作过程</p> <p>gitlab提供了很多配置关键字，其中最基础和常用的有这么几个</p> <ul><li>stages</li> <li>stage</li> <li>script</li> <li>tags</li></ul> <h3 id="_1-stages-和-stage"><a href="#_1-stages-和-stage" class="header-anchor">#</a> 1. stages 和 stage</h3> <p>stages定义在YML文件的最外层，它的值是一个数组，用于定义一个pipeline不同的流程节点</p> <p>例如定义如下三个阶段</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>stages: # 分段
+  - install 
+  - build
+  - deploy 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>则在Gitlab交互界面中能够看到如下展示<br> <img src="/assets/img/gitlab-jobs.a60b7312.jpg" width="800" height="300" alt="gitlab" align="center"></p> <h3 id="_2-job"><a href="#_2-job" class="header-anchor">#</a> 2. Job</h3> <p>Job是pipeline的任务节点，它构成了pipeline的基本单元<br>
+stage/script/tags这三个关键字，都是作为Job的子属性来使用的</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>install:
+  tags:
+    - sss
+  stage: install
+  script:
+    - npm install
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li>stage 是一个字符串，且是stages数组的一个子项，表示的是当前的pipeline节点
+<ul><li>正在执行是蓝色</li> <li>尚未执行是灰色</li> <li>执行成功是绿色</li> <li>执行失败是红色</li></ul></li></ul> <p>当前stage的执行情况能在交互面板上能看的清清楚楚</p> <h3 id="_3-script"><a href="#_3-script" class="header-anchor">#</a> 3. script</h3> <p>它是当前pipeline节点运行的shell脚本（以项目根目录为上下文执行）。</p> <p>这个script是我们控制CI流程的核心，我们所有的工作：从安装，编译到部署都是通过script中定义的shell脚本来完成的。</p> <p>如果脚本执行成功，pipeline就会进入下一个Job节点，如果执行失败那么pipeline就会终止</p> <h3 id="_4-tags"><a href="#_4-tags" class="header-anchor">#</a> 4. tags</h3> <p><strong>tags是当前Job的标记，这个tags关键字是很重要，因为gitlab的runner会通过tags去判断能否执行当前这个Job</strong><br>
+如果一个Job没有tag或者tag不是sss,那么即使这个Runner是激活且空闲的，也不会去执行！</p> <h2 id="四、-部署思路"><a href="#四、-部署思路" class="header-anchor">#</a> 四、 部署思路</h2> <h3 id="_1-部署资源到云服务器"><a href="#_1-部署资源到云服务器" class="header-anchor">#</a> 1. 部署资源到云服务器</h3> <p>通过 scp 这一命令，将本地机器代码远程拷贝到云服务器上。<br>
+因为这一命令需要输入密码，所以通过 sshpass 命令携带密码再执行scp：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sshpass -p $PASSWORD scp -r ./build $CUSTOM_USERNAME@$CUSTOM_IP:/var/www/html
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="_2-gitlab的自定义变量-variables"><a href="#_2-gitlab的自定义变量-variables" class="header-anchor">#</a> 2. gitlab的自定义变量 Variables</h3> <p>Gitlab有自定义变量的功能，例如我们觉得直接在YML中写入密码/账号等信息不太好，那么可以通过美元符号$写入一个预定义的变量，然后在Gitlab面板上输入它</p> <h3 id="_3-编写简单的部署文件"><a href="#_3-编写简单的部署文件" class="header-anchor">#</a> 3. 编写简单的部署文件</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>stages: # 分段
+  - install 
+  - build
+  - deploy 
+
+cache:  # 缓存
+  paths: 
+    - node_modules
+
+install-job: 
+  tags: 
+    - web
+  stage: install 
+  script: 
+    - yarn install 
+
+build-job: 
+  tags: 
+    - web 
+  stage: build
+  script: 
+    - yarn docs:build
+
+deploy-job: 
+  tags: 
+    - web 
+  stage: deploy 
+  script: 
+    - sshpass -p $PASSWORD scp -r ./docs/.vuepress/dist/ $CUSTOM_USERNAME@$CUSTOM_IP:/usr/share/nginx/html/pwa
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br></div></div><h3 id="_4-yml的片段复用和模块化"><a href="#_4-yml的片段复用和模块化" class="header-anchor">#</a> 4. YML的片段复用和模块化</h3> <p>际项目的运行中，.gitlab-ci.yml的编写可能会渐趋复杂。那么这个时候YML的一些其他语法功能就派上用场了</p> <ol><li>YML的片段复用功能</li></ol> <ul><li>使用 &amp;符号可以定义一个片段的别名</li> <li>使用 &lt;&lt;符号和 * 符号可以将别名对应的YML片段导入</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>.common-config: &amp;commonConfig
+  only: # 表示仅在develop/release分支上执行
+    refs:
+      - develop
+      - release
+
+install-job:
+  # 其他配置 ....
+  &lt;&lt;: *commonConfig
+build-job:
+  # 其他配置 ....
+  &lt;&lt;: *commonConfig
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ol start="2"><li>YML的模块化功能<br>
+gitlab-ci提供的include关键字便可实现这个功能, 它可以用来导入外部的YML文件<br>
+例如我们有如下的YML结构</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code> ├── .gitlab-ci.h5.yml'
+ ├── .gitlab-ci.bd.yml'
+ ├── .gitlab-ci.wx.yml
+ └── .gitlab-ci.yml
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><strong>那么在.gitlab-ci.yml中这么写，就可以对它们做合并</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>include:
+  - '/.gitlab-ci.wx.yml'
+  - '/.gitlab-ci.bd.yml'
+  - '/.gitlab-ci.h5.yml'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>gitlab-ci还提供了extend关键字，它的功能和前面提到的YML的片段导入的功能是一样的，可读性更好一些。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>.common-config: 
+  only: # 表示仅在develop/release分支上执行
+    refs:
+      - develop
+      - release
+
+install-job:
+  # 其他配置 ....
+  extends: .common-config
+
+build-job:
+  # 其他配置 ....
+  extends: .common-config
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ol start="3"><li>Gitlab-ci的其他配置项</li></ol> <ul><li><p>cache关键字  用来做缓存的<br> <strong>gitlab-ci 在运行下一个Job的时候，会默认把前一个Job新增的资源删除得干干静静</strong><br> <strong>bulid阶段编译生成的包，会在deploy阶段运行前被默认删除！</strong><br>
+如果我们把bulid生产的包的路径添加到cache里面，虽然gitlab还是会删除bulid目录，但是因为在删除前我们已经重新上传了cache，并且在下个Job运行时又把cache给pull下来，那么这个时候就可以实现在下一个Job里面使用前一个Job的资源了</p></li> <li><p>cache的功能体现在两点：</p> <ul><li>在不同pipeline之间重用资源</li> <li>在同一pipeline的不同Job之间重用资源</li></ul></li> <li><p>artifacts关键字: 将生成的资源作为pipeline运行成功的附件上传，并在gitlab交互界面上提供下载</p></li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>Build-job:
+  stage: build
+  script:
+  - 'npm run build'
+  artifacts:
+    name: 'bundle'
+    paths: 
+      - build/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>这样在pipeline跑完后，视图页面会显示下载按钮</p> <ul><li><p>image/services: 使用Docker的镜像和服务运行Job</p></li> <li><p>only/except: 这两个关键字后面跟的值是tag或者分支名的列表</p> <ul><li>only的作用是指定当前Job仅仅只在某些tag或者branch上触发</li> <li>而except的作用是当前Job不在某些tag或者branch上触发</li></ul></li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>job:
+  # use regexp
+  only:
+    - /^issue-.*$/
+    - develop
+    - release
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><ul><li>allow_failure: 值为true/false, 表示当前Job是否允许允许失败。</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>job1:
+  stage: test
+  script:
+    - execute_script_that_will_fail
+  allow_failure: true
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><ul><li>timeout: 配置超时时间，超过时间判定为失败</li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>Job:
+  script: rspec
+  timeout: 3h 30m
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><ul><li>When: 表示当前Job在何种状态下运行，它可设置为3个值
+<ul><li>on_success: 仅当先前pipeline中的所有Job都成功（或因为已标记，被视为成功allow_failure）时才执行当前Job 。这是默认值。</li> <li>on_failure: 仅当至少一个先前阶段的Job失败时才执行当前Job。</li> <li>always: 执行当前Job，而不管先前pipeline的Job状态如何。</li></ul></li></ul> <h2 id="五、问题和解决"><a href="#五、问题和解决" class="header-anchor">#</a> 五、问题和解决</h2> <h3 id="_1-gitlab-runner-未激活问题"><a href="#_1-gitlab-runner-未激活问题" class="header-anchor">#</a> 1. gitlab-runner 未激活问题</h3> <p>注册之后，查看面板上Runner信息，发现处于未激活状态<br> <strong>解决办法</strong> 运行以下命令重新启动runner</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>sudo gitlab-runner verify
+sudo gitlab-runner restart
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h3 id="_2-job一直挂起-没有runner来处理"><a href="#_2-job一直挂起-没有runner来处理" class="header-anchor">#</a> 2. Job一直挂起，没有Runner来处理</h3> <ul><li>首先考虑的是不是Runner没有激活，如果没有那么按上面方式处理</li> <li>tag没有匹配到，上面说过，Runner注册时是要填写绑定tag的，如果你在YML里面编写Job没有带上tag是不会有自定义Runner来处理。解决方法:给Job加tags</li> <li>最后一种可能：你连续注册了多个Runner,这些Runner冲突了，或者是新注册的Runner和旧Runner使用了同一个token,这时候的解决方法如下<br> <strong>先删掉本地其他旧的Runner</strong></li></ul> <div class="language- line-numbers-mode"><pre class="language-text"><code>sudo gitlab-runner unregister --all-runners
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p><strong>然后重置token,并使用更新后的token重新注册一个Runner</strong></p> <h2 id="六、gitlab-ci和docker自动化构建发布"><a href="#六、gitlab-ci和docker自动化构建发布" class="header-anchor">#</a> 六、Gitlab-ci和docker自动化构建发布</h2> <h3 id="_1-服务器上配置免密操作"><a href="#_1-服务器上配置免密操作" class="header-anchor">#</a> 1. 服务器上配置免密操作</h3> <h3 id="_2-用docker安装gitlab-runner"><a href="#_2-用docker安装gitlab-runner" class="header-anchor">#</a> 2. 用docker安装gitlab-runner</h3> <h3 id="_3-gitlab-ci-yml文件"><a href="#_3-gitlab-ci-yml文件" class="header-anchor">#</a> 3. .gitlab-ci.yml文件</h3> <div class="language- line-numbers-mode"><pre class="language-text"><code>/做缓存的
+cache:
+  key: ${CI_PROJECT_NAME}
+  paths:
+    - node_modules/
+//测试
+# test_e2e:
+#   image: cypress/browsers:chrome67
+#   stage: test
+#   script:
+#     - npm i
+#     - npm run test:e2e -- --headless --record --key b2a22185-8eeb-4f0e-9b21-2d61f769d8c7
+#   only:
+#     - master
+//dev环境构建
+dev:build:
+  image: node
+  stage: build
+  script:
+    - yarn
+    - yarn build:dev
+  only:
+    - dev
+  tags:
+    - eye-runner
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist //项目打包后的文件夹
+//dev环境发布
+dev:deploy:
+  image: alpine:3.7
+  stage: deploy
+  script:
+    - echo &quot;http://mirrors.aliyun.com/alpine/v3.7/main/&quot; &gt; /etc/apk/repositories
+    - apk add --no-cache rsync openssh
+    - mkdir -p ~/.ssh
+    - echo &quot;$SSH_KEY_DEMO_PRIVATE&quot; &gt;&gt; ~/.ssh/id_rsa
+    - echo &quot;$SSH_KEY_DEMO_PUB&quot; &gt;&gt; ~/.ssh/id_rsa.pub
+    - chmod 600 ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa.pub
+    - echo -e &quot;Host *\n\t StrictHostKeyChecking no \n\n&quot; &gt; ~/.ssh/config
+    - rsync -rav --delete ./dist/ &quot;$SERVER_DEMO_HOST:$SERVER_DEMO_PATH&quot;//同步打包后的文件夹里的内容到nginx指定的静态资源文件夹
+  only:
+    - dev
+  tags:
+    - eye-runner
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br></div></div><!----></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">最后更新时间: </span> <span class="time">2/16/2022, 10:30:52 AM</span></div></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#一、-gitlab安装部署和常用命令" class="sidebar-link reco-side-一、-gitlab安装部署和常用命令" data-v-b57cc07c>一、 Gitlab安装部署和常用命令</a></li><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#二、-gitlab-runner-安装和配置" class="sidebar-link reco-side-二、-gitlab-runner-安装和配置" data-v-b57cc07c>二、 Gitlab runner 安装和配置</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_1-安装-gitlab-runner" class="sidebar-link reco-side-_1-安装-gitlab-runner" data-v-b57cc07c>1. 安装 gitlab runner</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_2-注册-gitlab-runner" class="sidebar-link reco-side-_2-注册-gitlab-runner" data-v-b57cc07c>2. 注册 gitlab-runner</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_3-自定义构建目录" class="sidebar-link reco-side-_3-自定义构建目录" data-v-b57cc07c>3. 自定义构建目录</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_4-对应执行命令" class="sidebar-link reco-side-_4-对应执行命令" data-v-b57cc07c>4. 对应执行命令</a></li><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#三、-gitlab-ci-yml" class="sidebar-link reco-side-三、-gitlab-ci-yml" data-v-b57cc07c>三、 gitlab-ci.yml</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_1-stages-和-stage" class="sidebar-link reco-side-_1-stages-和-stage" data-v-b57cc07c>1. stages 和 stage</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_2-job" class="sidebar-link reco-side-_2-job" data-v-b57cc07c>2. Job</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_3-script" class="sidebar-link reco-side-_3-script" data-v-b57cc07c>3. script</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_4-tags" class="sidebar-link reco-side-_4-tags" data-v-b57cc07c>4. tags</a></li><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#四、-部署思路" class="sidebar-link reco-side-四、-部署思路" data-v-b57cc07c>四、 部署思路</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_1-部署资源到云服务器" class="sidebar-link reco-side-_1-部署资源到云服务器" data-v-b57cc07c>1. 部署资源到云服务器</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_2-gitlab的自定义变量-variables" class="sidebar-link reco-side-_2-gitlab的自定义变量-variables" data-v-b57cc07c>2. gitlab的自定义变量 Variables</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_3-编写简单的部署文件" class="sidebar-link reco-side-_3-编写简单的部署文件" data-v-b57cc07c>3. 编写简单的部署文件</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_4-yml的片段复用和模块化" class="sidebar-link reco-side-_4-yml的片段复用和模块化" data-v-b57cc07c>4. YML的片段复用和模块化</a></li><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#五、问题和解决" class="sidebar-link reco-side-五、问题和解决" data-v-b57cc07c>五、问题和解决</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_1-gitlab-runner-未激活问题" class="sidebar-link reco-side-_1-gitlab-runner-未激活问题" data-v-b57cc07c>1. gitlab-runner 未激活问题</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_2-job一直挂起-没有runner来处理" class="sidebar-link reco-side-_2-job一直挂起-没有runner来处理" data-v-b57cc07c>2. Job一直挂起，没有Runner来处理</a></li><li class="level-2" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#六、gitlab-ci和docker自动化构建发布" class="sidebar-link reco-side-六、gitlab-ci和docker自动化构建发布" data-v-b57cc07c>六、Gitlab-ci和docker自动化构建发布</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_1-服务器上配置免密操作" class="sidebar-link reco-side-_1-服务器上配置免密操作" data-v-b57cc07c>1. 服务器上配置免密操作</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_2-用docker安装gitlab-runner" class="sidebar-link reco-side-_2-用docker安装gitlab-runner" data-v-b57cc07c>2. 用docker安装gitlab-runner</a></li><li class="level-3" data-v-b57cc07c><a href="/github-actions/gitlab-ci.html#_3-gitlab-ci-yml文件" class="sidebar-link reco-side-_3-gitlab-ci-yml文件" data-v-b57cc07c>3. .gitlab-ci.yml文件</a></li></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:2;" data-v-248d85d6></canvas></div><div id="goTop" class="hide-cat" data-v-bf92849a></div><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:290px;display:none;" data-v-5775ee02>
+      欢迎来到我的博客
+    </div> <div class="operation" style="right:90px;bottom:40px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="300px" height="320" class="live2d" style="right:90px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div></div><!----><!----><canvas id="vuepress-canvas-cursor"></canvas><!----></div></div>
+    <script src="/assets/js/app.eb6a6e16.js" defer></script><script src="/assets/js/7.27fe50b1.js" defer></script><script src="/assets/js/2.2f1a7624.js" defer></script><script src="/assets/js/1.44dacab0.js" defer></script><script src="/assets/js/39.053e6331.js" defer></script><script src="/assets/js/34.45141a63.js" defer></script>
+  </body>
+</html>
