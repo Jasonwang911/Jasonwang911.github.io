@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汽车之家论坛Puppeteer访问工具</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --dark: #1e293b;
+      --light: #f8fafc;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+    
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--dark));
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 30px;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .card h2 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #555;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border 0.3s;
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, var(--primary), var(--dark));
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      text-align: center;
+      margin: 5px;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .btn-success {
+      background: linear-gradient(90deg, var(--success), #0d9c6a);
+    }
+    
+    .btn-warning {
+      background: linear-gradient(90deg, var(--warning), #d97706);
+    }
+    
+    .btn-danger {
+      background: linear-gradient(90deg, var(--danger), #dc2626);
+    }
+    
+    .task-list {
+      margin-top: 20px;
+    }
+    
+    .task-item {
+      background: #f8f9fa;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .task-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .task-url {
+      font-weight: bold;
+      color: var(--dark);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 70%;
+    }
+    
+    .task-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .success { color: var(--success); }
+    .warning { color: var(--warning); }
+    .danger { color: var(--danger); }
+    
+    .progress-bar {
+      height: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--dark));
+      width: 0%;
+      transition: width 0.3s;
+    }
+    
+    .log-container {
+      height: 300px;
+      overflow-y: auto;
+      background: #1e1e1e;
+      color: #00ff00;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+    
+    .log-entry {
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    
+    .log-time {
+      color: #888;
+    }
+    
+    .log-info { color: #00ff00; }
+    .log-error { color: #ff4444; }
+    .log-warning { color: #ffaa00; }
+    .log-success { color: #44ff44; }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .status-active { background: var(--success); color: white; }
+    .status-completed { background: var(--primary); color: white; }
+    .status-error { background: var(--danger); color: white; }
+    
+    @media (max-width: 768px) {
+      .task-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .task-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .task-url {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>汽车之家论坛Puppeteer访问工具</h1>
+      <p class="subtitle">Vercel部署版 - 使用真实浏览器模拟访问</p>
+    </header>
+    
+    <div class="content">
+      <div class="card">
+        <h2>新建Puppeteer访问任务</h2>
+        <div class="form-group">
+          <label for="url">汽车之家论坛帖子URL</label>
+          <input type="url" id="url" placeholder="https://club.autohome.com.cn/bbs/thread/..." 
+                 value="https://club.autohome.com.cn/bbs/thread/500ba3ea727209ed/113247813-1.html">
+        </div>
+        
+        <div class="form-group">
+          <label for="count">访问次数</label>
+          <input type="number" id="count" value="10" min="1" max="50">
+          <small style="color: #666;">建议每次不超过50次，避免Vercel超时</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="delay">访问间隔(毫秒)</label>
+          <input type="number" id="delay" value="3000" min="2000" max="10000">
+          <small style="color: #666;">建议2000-5000ms，避免被反爬</small>
+        </div>
+        
+        <button id="startBtn" class="btn">启动Puppeteer访问任务</button>
+        <button id="testBtn" class="btn btn-success">测试Puppeteer连接</button>
+      </div>
+      
+      <div class="card">
+        <h2>活动任务列表</h2>
+        <div id="taskList" class="task-list">
+          <p id="noTasks">暂无活动任务</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h2>实时日志</h2>
+        <div class="log-container" id="logContainer">
+          <div class="log-entry log-info">等待任务启动...</div>
+        </div>
+        <button id="clearLogBtn" class="btn btn-warning">清空日志</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 配置 - 替换为您的Vercel部署地址
+    const API_BASE = 'https://your-vercel-app.vercel.app';
+    let refreshInterval = null;
+    
+    // DOM元素
+    const startBtn = document.getElementById('startBtn');
+    const testBtn = document.getElementById('testBtn');
+    const clearLogBtn = document.getElementById('clearLogBtn');
+    const taskList = document.getElementById('taskList');
+    const noTasks = document.getElementById('noTasks');
+    const logContainer = document.getElementById('logContainer');
+    
+    // 初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      startBtn.addEventListener('click', startNewTask);
+      testBtn.addEventListener('click', testPuppeteer);
+      clearLogBtn.addEventListener('click', clearLog);
+      loadActiveTasks();
+      
+      // 每3秒刷新一次任务状态
+      refreshInterval = setInterval(loadActiveTasks, 3000);
+      
+      addLog('系统初始化完成', 'info');
+      addLog(`API基础地址: ${API_BASE}`, 'info');
+    });
+    
+    // 添加日志
+    function addLog(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const logEntry = document.createElement('div');
+      logEntry.className = `log-entry log-${type}`;
+      logEntry.innerHTML = `<span class="log-time">[${timestamp}]</span> ${message}`;
+      
+      logContainer.appendChild(logEntry);
+      logContainer.scrollTop = logContainer.scrollHeight;
+    }
+    
+    // 清空日志
+    function clearLog() {
+      logContainer.innerHTML = '<div class="log-entry log-info">日志已清空</div>';
+    }
+    
+    // 测试Puppeteer连接
+    async function testPuppeteer() {
+      testBtn.disabled = true;
+      testBtn.textContent = '测试中...';
+      
+      try {
+        const response = await fetch(`${API_BASE}/api/test-puppeteer`);
+        const result = await response.json();
+        
+        if (result.success) {
+          addLog(`Puppeteer测试成功: ${result.title}`, 'success');
+        } else {
+          addLog(`Puppeteer测试失败: ${result.error}`, 'error');
+        }
+      } catch (error) {
+        addLog(`测试连接失败: ${error.message}`, 'error');
+      } finally {
+        testBtn.disabled = false;
+        testBtn.textContent = '测试Puppeteer连接';
+      }
+    }
+    
+    // 启动新任务
+    async function startNewTask() {
+      const url = document.getElementById('url').value;
+      const count = document.getElementById('count').value;
+      const delay = document.getElementById('delay').value;
+      
+      if (!url || !url.includes('club.autohome.com.cn')) {
+        alert('请输入有效的汽车之家论坛URL');
+        return;
+      }
+      
+      if (count > 50) {
+        if (!confirm('访问次数超过50次，可能会因为Vercel超时而中断。是否继续？')) {
+          return;
+        }
+      }
+      
+      startBtn.disabled = true;
+      startBtn.textContent = '启动中...';
+      
+      try {
+        const response = await fetch(`${API_BASE}/api/start-task`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url, count, delay })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          addLog(`Puppeteer任务已启动: ${url} (${count}次访问)`, 'success');
+          addLog(`任务ID: ${result.taskId}`, 'info');
+          loadActiveTasks();
+        } else {
+          addLog(`启动失败: ${result.error}`, 'error');
+        }
+      } catch (error) {
+        addLog(`网络错误: ${error.message}`, 'error');
+      } finally {
+        startBtn.disabled = false;
+        startBtn.textContent = '启动Puppeteer访问任务';
+      }
+    }
+    
+    // 加载活动任务
+    async function loadActiveTasks() {
+      try {
+        const response = await fetch(`${API_BASE}/api/active-tasks`);
+        const tasks = await response.json();
+        
+        if (tasks.length === 0) {
+          noTasks.style.display = 'block';
+          taskList.innerHTML = '';
+          return;
+        }
+        
+        noTasks.style.display = 'none';
+        taskList.innerHTML = '';
+        
+        tasks.forEach(task => {
+          const taskElement = createTaskElement(task);
+          taskList.appendChild(taskElement);
+        });
+      } catch (error) {
+        console.error('加载任务失败:', error);
+      }
+    }
+    
+    // 创建任务元素
+    function createTaskElement(task) {
+      const progress = task.total > 0 ? (task.completed / task.total) * 100 : 0;
+      const status = task.active ? 'active' : (task.completed >= task.total ? 'completed' : 'error');
+      
+      const taskElement = document.createElement('div');
+      taskElement.className = 'task-item';
+      taskElement.innerHTML = `
+        <div class="task-header">
+          <div class="task-url" title="${task.url}">${task.url}</div>
+          <div>
+            <span class="status-badge status-${status}">${getStatusText(status)}</span>
+            ${task.active ? `<button class="btn btn-danger btn-stop" data-id="${task.id}">停止</button>` : ''}
+          </div>
+        </div>
+        
+        <div class="task-stats">
+          <div class="stat-item">
+            <div>计划次数</div>
+            <div class="stat-value">${task.total}</div>
+          </div>
+          <div class="stat-item">
+            <div>已完成</div>
+            <div class="stat-value ${task.completed < task.total ? 'warning' : 'success'}">${task.completed}</div>
+          </div>
+          <div class="stat-item">
+            <div>失败次数</div>
+            <div class="stat-value ${task.failures > 0 ? 'danger' : ''}">${task.failures}</div>
+          </div>
+          <div class="stat-item">
+            <div>最后状态</div>
+            <div class="stat-value">${task.lastStatus || 'N/A'}</div>
+          </div>
+        </div>
+        
+        <div class="progress-bar">
+          <div class="progress" style="width: ${progress}%"></div>
+        </div>
+        
+        <div>
+          <small>开始时间: ${new Date(task.startedAt).toLocaleString()}</small>
+          ${task.lastAccess ? `<br><small>最后访问: ${new Date(task.lastAccess).toLocaleString()}</small>` : ''}
+          ${task.lastDuration ? `<br><small>最后耗时: ${task.lastDuration}ms</small>` : ''}
+          ${task.lastViewCount ? `<br><small>最后访问量: ${task.lastViewCount}</small>` : ''}
+          ${task.lastError ? `<br><small class="danger">最后错误: ${task.lastError}</small>` : ''}
+        </div>
+      `;
+      
+      // 添加停止按钮事件
+      if (task.active) {
+        const stopBtn = taskElement.querySelector('.btn-stop');
+        stopBtn.addEventListener('click', () => stopTask(task.id));
+      }
+      
+      return taskElement;
+    }
+    
+    // 获取状态文本
+    function getStatusText(status) {
+      switch(status) {
+        case 'active': return '进行中';
+        case 'completed': return '已完成';
+        case 'error': return '错误';
+        default: return status;
+      }
+    }
+    
+    // 停止任务
+    async function stopTask(taskId) {
+      try {
+        const response = await fetch(`${API_BASE}/api/stop-task/${taskId}`, {
+          method: 'POST'
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          addLog(`任务已停止: ${taskId}`, 'warning');
+          loadActiveTasks();
+        } else {
+          addLog(`停止失败: ${result.error}`, 'error');
+        }
+      } catch (error) {
+        addLog(`网络错误: ${error.message}`, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

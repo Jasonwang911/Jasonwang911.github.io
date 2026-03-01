@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深蓝S05天津车友会红包奖励计算器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            min-height: 100vh;
+            padding: 20px 15px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            color: white;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus {
+            border-color: #1a2a6c;
+            outline: none;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #1a2a6c, #2a3a9c);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #2a3a9c, #3a4aac);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .result.active {
+            display: block;
+        }
+        
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .result-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .result-label {
+            color: #555;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .total-result {
+            background: linear-gradient(135deg, #fdbb2d, #b21f1f);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .total-result.active {
+            display: block;
+        }
+        
+        .total-result h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .total-amount {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .rules {
+            font-size: 12px;
+            color: #777;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .clear-btn {
+            background: #f0f0f0;
+            color: #666;
+            border: 1px solid #ddd;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .clear-btn:hover {
+            background: #e0e0e0;
+        }
+        
+        .auto-calc-hint {
+            font-size: 12px;
+            color: #1a2a6c;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>深蓝S05天津车友会红包奖励计算器</h1>
+            <p>根据任务完成情况自动计算您的奖励金额</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">1</span>
+                任务完成情况
+            </div>
+            <div class="input-group">
+                <label for="postCount">当月累计发帖数量</label>
+                <input type="number" id="postCount" placeholder="请输入发帖数量" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="browseDays">浏览任务完成天数</label>
+                <input type="number" id="browseDays" placeholder="请输入浏览任务天数" min="0" max="31" value="0">
+            </div>
+            <div class="input-group">
+                <label for="commentDays">评论任务完成天数</label>
+                <input type="number" id="commentDays" placeholder="请输入评论任务天数" min="0" max="31" value="0">
+            </div>
+            <div class="auto-calc-hint">输入后系统将自动计算您的奖励金额</div>
+            <button class="clear-btn" onclick="clearAll()">清空所有数据</button>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">2</span>
+                贡献值奖金
+            </div>
+            <div class="result" id="contributionResult">
+                <div class="result-row">
+                    <span class="result-label">累计贡献值:</span>
+                    <span class="result-value" id="contributionValue">0</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">贡献值奖金:</span>
+                    <span class="result-value" id="contributionAmount">0元</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">3</span>
+                参与奖金
+            </div>
+            <div class="result" id="participationResult">
+                <div class="result-row">
+                    <span class="result-label">参与天数:</span>
+                    <span class="result-value" id="participationDays">0天</span>
+                </div>
+                <div class="result-row">
+                    <span class="result-label">参与奖金:</span>
+                    <span class="result-value" id="participationAmount">0元</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="total-result" id="totalResult">
+            <h2>预计总奖励</h2>
+            <div class="total-amount" id="totalAmount">0元</div>
+            <p>贡献值奖金 + 参与奖金</p>
+        </div>
+        
+        <div class="card">
+            <div class="card-title">
+                <span class="icon">?</span>
+                活动说明
+            </div>
+            <div class="rules">
+                <p><strong>活动时间：</strong>2025年10月1日-10月31日</p>
+                <p><strong>参与对象：</strong>全体车友会成员</p>
+                <p><strong>活动规则：</strong></p>
+                <p>1. 贡献值奖金：每日助力车友会，做任务得贡献值，当月累计贡献值≥200可获40-100元奖励</p>
+                <p>2. 参与奖金：当月参与线上任务天数≥7天，可得5-25元奖励（参与任务即可，未得贡献值也计入）</p>
+                <p>3. 两项奖励可叠加获得</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 获取输入元素
+        const postCountInput = document.getElementById('postCount');
+        const browseDaysInput = document.getElementById('browseDays');
+        const commentDaysInput = document.getElementById('commentDays');
+        
+        // 添加输入事件监听
+        postCountInput.addEventListener('input', calculateAll);
+        browseDaysInput.addEventListener('input', calculateAll);
+        commentDaysInput.addEventListener('input', calculateAll);
+        
+        // 计算所有奖励
+        function calculateAll() {
+            // 获取输入值
+            const postCount = parseInt(postCountInput.value) || 0;
+            const browseDays = parseInt(browseDaysInput.value) || 0;
+            const commentDays = parseInt(commentDaysInput.value) || 0;
+            
+            // 计算贡献值
+            const contributionValue = calculateContributionValue(postCount, browseDays, commentDays);
+            
+            // 计算贡献值奖金
+            const contributionBonus = calculateContributionBonus(contributionValue);
+            
+            // 计算参与奖金
+            const participationBonus = calculateParticipationBonus(postCount, browseDays, commentDays);
+            
+            // 计算参与天数
+            const participationDays = calculateParticipationDays(postCount, browseDays, commentDays);
+            
+            // 更新显示
+            updateDisplay(contributionValue, contributionBonus, participationDays, participationBonus);
+        }
+        
+        // 计算贡献值
+        function calculateContributionValue(postCount, browseDays, commentDays) {
+            // 根据图片，发帖每次10贡献值，浏览和评论每次5贡献值
+            // 假设每天每个任务最多完成一次
+            return postCount * 10 + browseDays * 5 + commentDays * 5;
+        }
+        
+        // 计算贡献值奖金
+        function calculateContributionBonus(contributionValue) {
+            if (contributionValue >= 550) {
+                return 100;
+            } else if (contributionValue >= 400) {
+                return 60;
+            } else if (contributionValue >= 200) {
+                return 40;
+            } else {
+                return 0;
+            }
+        }
+        
+        // 计算参与天数
+        function calculateParticipationDays(postCount, browseDays, commentDays) {
+            // 计算参与天数（取最大值，因为同一天完成多个任务只算一天）
+            const postDays = postCount > 0 ? 1 : 0;
+            return Math.max(postDays, browseDays, commentDays);
+        }
+        
+        // 计算参与奖金
+        function calculateParticipationBonus(postCount, browseDays, commentDays) {
+            const participationDays = calculateParticipationDays(postCount, browseDays, commentDays);
+            let bonus = 0;
+            
+            // 根据图片数据计算参与奖金
+            if (participationDays >= 7) {
+                // 基础奖励5元
+                bonus = 5;
+                
+                // 额外奖励
+                if (participationDays > 7 && participationDays <= 20) {
+                    bonus += (participationDays - 7) * 0.75;
+                } else if (participationDays > 20) {
+                    bonus += (20 - 7) * 0.75 + (participationDays - 20) * 0.84;
+                }
+                
+                // 最高限额25元
+                bonus = Math.min(bonus, 25);
+            }
+            
+            return bonus;
+        }
+        
+        // 更新显示
+        function updateDisplay(contributionValue, contributionBonus, participationDays, participationBonus) {
+            // 更新贡献值显示
+            document.getElementById('contributionValue').textContent = contributionValue;
+            document.getElementById('contributionAmount').textContent = contributionBonus.toFixed(2) + '元';
+            document.getElementById('contributionResult').classList.add('active');
+            
+            // 更新参与奖金显示
+            document.getElementById('participationDays').textContent = participationDays + '天';
+            document.getElementById('participationAmount').textContent = participationBonus.toFixed(2) + '元';
+            document.getElementById('participationResult').classList.add('active');
+            
+            // 计算并更新总奖金
+            const totalBonus = contributionBonus + participationBonus;
+            if (totalBonus > 0) {
+                document.getElementById('totalAmount').textContent = totalBonus.toFixed(2) + '元';
+                document.getElementById('totalResult').classList.add('active');
+            } else {
+                document.getElementById('totalResult').classList.remove('active');
+            }
+        }
+        
+        // 清空所有数据
+        function clearAll() {
+            postCountInput.value = 0;
+            browseDaysInput.value = 0;
+            commentDaysInput.value = 0;
+            
+            document.getElementById('contributionResult').classList.remove('active');
+            document.getElementById('participationResult').classList.remove('active');
+            document.getElementById('totalResult').classList.remove('active');
+        }
+        
+        // 页面加载时自动计算一次
+        window.onload = function() {
+            calculateAll();
+        };
+    </script>
+</body>
+</html>

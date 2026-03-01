@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>论文排序</title>
+	<script src="https://cdn.jsdelivr.net/npm/pinyin-pro@3.14.0/dist/index.js"></script>
+	<style>
+		body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    min-width: 1200px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.output-container {
+    margin-top: 20px;
+}
+
+.output-container h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+#output, #originalOutput {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 100px;
+}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form name="my_Form" method="POST">
+				<textarea cols="100" rows="30" id="inputText" placeholder="输入文献，每个文献结束后回车"></textarea>
+		</form>
+		<button id="btn">点击生成</button>
+		<div class="output-container">
+				<h2>全新排序输出</h2>
+				<div id="output"></div>
+		</div>
+		<div class="output-container">
+				<h2>带原始序号的排序</h2>
+				<div id="originalOutput"></div>
+		</div>
+</div>
+
+
+
+	<script type="text/javascript">
+		document.getElementById('btn').addEventListener('click',function() {
+				// 先清空原来内容
+				const outputDiv = document.getElementById('output');
+				const orgOutputDiv = document.getElementById('originalOutput');
+				outputDiv.innerHTML = ''
+				orgOutputDiv.innerHTML = ''
+				// 获取 textarea 中的内容
+				const inputText = document.getElementById('inputText').value;
+
+				// 使用正则表达式匹配 [数字] 和其后的文本内容
+				// const regex = /\[\d+\]\s*[^[]+/g;
+				// const matches = inputText.match(regex);
+				const pattern = /\[\d+\]/g;
+				const parts = inputText.split(pattern).filter(part => part.trim() !== '');
+				const m = inputText.match(pattern);
+				const matches = parts.map((part, index) => m[index] + part.trim());
+
+				if (!matches) {
+						document.getElementById('output').innerHTML = "No references found.";
+						return;
+				}
+				console.log(matches)
+				// 将匹配的结果分成中文文献和英文文献
+				const chineseReferences = [];
+				const englishReferences = [];
+
+				matches.forEach(match => {
+						const trimmedMatch = match.trim();
+						// 判断是否为中文文献（包含中文字符即可）
+						if (/[\u4e00-\u9fa5]/.test(trimmedMatch)) {
+								chineseReferences.push(trimmedMatch);
+						} else {
+								englishReferences.push(trimmedMatch);
+						}
+				})
+				
+				const getPinyin = (text) => {
+						try {
+								return pinyinPro.pinyin(text, {
+										toneType: 'none',
+										type: 'string'
+								});
+						} catch (e) {
+								console.error("拼音转换错误:", text, e);
+								return text; // 出错时返回原文本
+						}
+				};
+
+				// 根据作者姓氏拼音/字母顺序排序中文文献
+				 chineseReferences.sort((a, b) => {
+                // 提取作者姓氏
+                const getAuthor = (str) => {
+                    const match = str.match(/\]\s*([^.,]+)/);
+                    return match ? match[1].split(',')[0].trim() : '';
+                };
+                
+                const authorA = getAuthor(a);
+                const authorB = getAuthor(b);
+                
+                // 获取拼音（使用新版API）
+                const pinyinA = getPinyin(authorA);
+                const pinyinB = getPinyin(authorB);
+                
+                // 按姓氏拼音排序
+                if (pinyinA.localeCompare(pinyinB) !== 0) {
+                    return pinyinA.localeCompare(pinyinB);
+                } else {
+                    // 姓氏相同则按名字排序
+                    const getName = (str) => {
+                        const match = str.match(/\]\s*([^.,]+)/);
+                        return match ? (match[1].split(',')[1]?.trim() || '') : '';
+                    };
+                    
+                    const nameA = getName(a);
+                    const nameB = getName(b);
+                    
+                    const pinyinNameA = getPinyin(nameA);
+                    const pinyinNameB = getPinyin(nameB);
+                    
+                    return pinyinNameA.localeCompare(pinyinNameB);
+                }
+            });
+
+				// 根据作者姓氏字母顺序排序英文文献
+				englishReferences.sort((a, b) => {
+						const authorA = a.match(/\]\s*([^.,]+)/)[1].split(' ')[0].trim();
+						const authorB = b.match(/\]\s*([^.,]+)/)[1].split(' ')[0].trim();
+						if (authorA.localeCompare(authorB) !== 0) {
+								return authorA.localeCompare(authorB);
+						} else {
+								const nameA = a.match(/\]\s*([^.,]+)/)[1].split(' ')[1]?.trim() || '';
+								const nameB = b.match(/\]\s*([^.,]+)/)[1].split(' ')[1]?.trim() || '';
+								return nameA.localeCompare(nameB);
+						}
+				});
+
+				// 合并排序后的中文文献和英文文献
+				const sortedReferences = [...chineseReferences, ...englishReferences];
+				
+
+				// 将结果显示在页面上，并保留原数字和新编号
+				
+				// outputDiv.innerHTML = '<h3>Sorted References:</h3>';
+				// orgOutputDiv.innerHTML = '<h3>original sort References:</h3>';
+				sortedReferences.forEach((ref, index) => {
+						const newNumber = index + 1;
+						// const originalNumber = ref.match(/\[(\d+)\]/)[1];
+						const orgCont = document.createElement('p');
+						orgCont.textContent = `[${newNumber}] ${ref}`;
+						// 去掉原来序号
+						const content = ref.replace(/\[\d+\]/, '')
+						
+						const p = document.createElement('p');
+						p.textContent = `[${newNumber}] ${content}`;
+						
+						outputDiv.appendChild(p);
+						
+						orgOutputDiv.appendChild(orgCont);
+						console.log(orgCont)
+				});
+		})
+
+	</script>
+</body>
+</html>
